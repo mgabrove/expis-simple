@@ -1,7 +1,7 @@
 <template>
   <div class="home top10">
     <Phase1 :stupanj="stupanj" v-if="stupanj >= 1" @prihvatio='prihvati'/>
-    <Phase2 v-if="stupanj >= 2" @alliswell='prihvati1'/>
+    <Phase2 v-if="stupanj >= 2" @prihvatio='prihvati'/>
     <Phase3 v-if="stupanj >= 3"/>
   </div>
 </template>
@@ -21,11 +21,8 @@ export default {
     Phase3
   },
   methods: {
-    prihvati() {
-      this.$emit('prihvatio');
-    },
-    prihvati1() {
-      this.$emit('prihvatio1');
+    prihvati(broj) {
+      this.$emit('prihvatio', broj);
     }
   },
 }

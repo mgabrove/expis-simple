@@ -66,7 +66,7 @@ export default {
             this.isModalVisible = false;
         },
         prihvati() {
-            this.$emit('prihvatio');
+            this.$emit('prihvatio', 2);
         }
     }
 };

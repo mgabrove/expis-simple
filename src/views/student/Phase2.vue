@@ -36,7 +36,7 @@ export default {
         storeBill (billData) {
             this.upload = billData;
             this.status = 1;
-            this.$emit('alliswell');
+            this.$emit('prihvat io', 3);
         }
     }
 };

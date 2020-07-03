@@ -21,9 +21,6 @@ export default {
   methods: {
     prihvati(broj) {
       this.stupanj = broj;
-    },
-    prihvati1() {
-      this.stupanj = 3;
     }
   }
 }
