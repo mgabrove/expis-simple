@@ -1,7 +1,7 @@
 <template>
   <div class="home top10">
     <Phase1 :phase="phase" v-if="phase >= 1" @prihvatio='prihvati'/>
-    <Phase2 v-if="phase >= 2" @prihvatio='prihvati'/>
+    <Phase2 v-if="phase >= 2"/>
     <Phase3 v-if="phase >= 3"/>
   </div>
 </template>

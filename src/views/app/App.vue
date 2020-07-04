@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Navbar :stupanj="stupanj"/>
-    <router-view @prihvatio='prihvati'/>
+    <Navbar :stupanj="stupanj" :ime="ime" :prezime="prezime"/>
+    <router-view @prihvatio='prihvati' @prihvatio1='prihvati1' @prihvatio2='prihvati2'/>
   </div>
 </template>
 
@@ -15,12 +15,20 @@ export default {
   },
   data () {
     return {
-      stupanj: 0
+      stupanj: 0,
+      ime: null,
+      prezime: null
     }
   },
   methods: {
     prihvati(broj) {
       this.stupanj = broj;
+    },
+    prihvati1(ime) {
+      this.ime = ime;
+    },
+    prihvati2(prezime) {
+      this.prezime = prezime;
     }
   }
 }

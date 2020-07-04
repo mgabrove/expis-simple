@@ -1,6 +1,7 @@
 <template>
     <div id="nav" class="col-12">
-      <p v-if="this.$route.name !== 'Login'" class="stupanj">{{phase}}</p>
+      <p v-if="this.$route.name !== 'Login' && stupanj != 0" class="stupanj">{{stupanj}}</p>
+      <p v-if="this.$route.name !== 'Login' && stupanj === 0" class="stupanj">{{ime}} {{prezime}}</p>
       <img :src="require('@/assets/img/logo.png')" contain class="logo"/>
       <button v-if="this.$route.name !== 'Login'" @click="logout" class="logout">Logout</button>
     </div>
@@ -8,13 +9,13 @@
 
 <script>
 import firebase from 'firebase'
-import db from '@/firebase/firebaseInit'
 
 export default {
   name: 'Navbar',
-  props: ['stupanj'],
+  props: ['stupanj', 'ime', 'prezime'],
   data () {
     return {
+      userDoc: null,
       user: firebase.auth().currentUser,
       phase: null
     }
@@ -22,21 +23,9 @@ export default {
   methods: {
     logout () {
       firebase.auth().signOut().then(() => {
-        this.$router.push({ name: 'Login'})
+        this.$router.go({ name: 'Login'})
       })
     },
-    userDocListener(){ //refreshes userDoc (coz new friends/blocked)
-        db.collection("users").where("uID","==",this.user.uid)
-        .onSnapshot(snapshot => {
-            snapshot.forEach(doc => {
-                this.userDoc = doc.data()
-                this.phase = this.userDoc.phase
-            })
-        })
-      },
-  },
-  mounted () {
-        this.userDocListener()
   },
 }
 </script>

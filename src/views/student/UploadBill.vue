@@ -23,7 +23,6 @@ export default {
       var input = event.target;
       if (input.files && input.files[0]) {
         var reader = new FileReader();
-
         reader.onload = e => {
           this.billData = e.target.result;
           this.$emit('send', this.billData)

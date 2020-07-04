@@ -6,9 +6,9 @@
         </div>
         <div class="flexdisplay">
             <UploadBill :status="status" @send="storeBill"/>
-            <a :href="uploadCheck" target="_blank" v-if="status === -1"><button class="red-button">Odbijeno</button></a>
-            <a :href="uploadCheck" target="_blank" v-if="status === 0"><button class="yellow-button">Obrada</button></a>
-            <a :href="uploadCheck" target="_blank" v-if="status === 1"><button class="green-button">Prihvaćeno</button></a>
+            <a :href="upload" target="_blank" v-if="status === -1"><button class="red-button">Odbijeno</button></a>
+            <a :href="upload" target="_blank" v-if="status === 0"><button class="yellow-button">Obrada</button></a>
+            <a :href="upload" target="_blank" v-if="status === 1"><button class="green-button">Prihvaćeno</button></a>
         </div>
 
     </div>
@@ -16,7 +16,7 @@
 
 <script>
 import firebase from 'firebase'
-import db from '@/firebase/firebaseInit'
+import db from '@/firebase/firebaseInit'    
 
 import UploadBill from '@/views/student/UploadBill'
 
@@ -29,33 +29,45 @@ export default {
     data() {
         return {
             user: firebase.auth().currentUser,
-            račun: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
-            prototip: "http://www.africau.edu/images/default/sample.pdf",
+            račun: "",
+            prototip: "",
             upload: "",
-            uploadCheck: "https://en.unesco.org/inclusivepolicylab/sites/default/files/dummy-pdf_2.pdf",
-            status: null
+            status: ""
         }
     },  
     methods: {
         storeBill (billData) {
-            this.upload = billData;
-            this.status = 1;
-            this.$emit('prihvat io', 3);
+            this.change(billData, 0);
         },
         userDocListener(){ //refreshes userDoc (coz new friends/blocked)
+        console.log("TU SAM")
             db.collection("users").where("uID","==",this.user.uid)
             .onSnapshot(snapshot => {
                 snapshot.forEach(doc => {
                     this.userDoc = doc.data()
-                    this.ime = this.userDoc.firstName
-                    this.prezime = this.userDoc.lastName
-                    this.oib = this.userDoc.oib
-                    this.godina = this.userDoc.year
-                    this.studij = this.userDoc.university
-                    this.smjerovi = this.userDoc.courses
+                    this.račun = doc.data().billPt
+                    this.prototip = doc.data().contractPt
+                    this.upload = doc.data().billFull
+                    this.status = doc.data().status
                 })
             })
         },
-    }
+        change(upload, num){
+            console.log("TU SAM")
+                db.collection("users").where("uID","==",this.user.uid)
+                .onSnapshot(snapshot => {
+                    snapshot.forEach(doc => {
+                        db.collection("users").doc(doc.id).update({ 
+                            billFull: upload,
+                            status: num
+                        })
+                    })
+                })
+
+        }
+    },
+    mounted () {
+        this.userDocListener()
+    },
 };
 </script>
