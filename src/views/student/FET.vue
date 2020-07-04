@@ -38,7 +38,7 @@ export default {
     props: ['smjerovi'],
     methods: {
         close() {
-            this.$emit('close');
+            this.$emit('close', this.smjerovi);
         },
         move(from, to) {
             var temp_from = this.smjerovi[from]

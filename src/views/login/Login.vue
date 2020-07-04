@@ -17,28 +17,29 @@
 </template>
 
 <script>
+import firebase from 'firebase'
+
 export default {
     data () {
         return {
             username: null,
             password: null,
             feedback: null,
-            submitted: false
+            submitted: null
         }
     },
     methods: {
         login () {
             if (this.username && this.password) {
-                if (this.username === "student") {
+                this.feedback = null
+                firebase.auth().signInWithEmailAndPassword(this.username, this.password)
+                .then(() => {
                     this.$router.push({ 
-                        name: 'Student'
+                        name: 'HomePage'
                     })
-                } 
-                if (this.username === "referada") {
-                    this.$router.push({ 
-                        name: 'Referada'
-                    })
-                }                
+                }).catch(err => {
+                    this.feedback = err.message
+                })
             } else {
                 this.feedback = 'Please fill out both fields'
             }

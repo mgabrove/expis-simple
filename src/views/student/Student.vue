@@ -1,8 +1,8 @@
 <template>
   <div class="home top10">
-    <Phase1 :stupanj="stupanj" v-if="stupanj >= 1" @prihvatio='prihvati'/>
-    <Phase2 v-if="stupanj >= 2" @prihvatio='prihvati'/>
-    <Phase3 v-if="stupanj >= 3"/>
+    <Phase1 :phase="phase" v-if="phase >= 1" @prihvatio='prihvati'/>
+    <Phase2 v-if="phase >= 2" @prihvatio='prihvati'/>
+    <Phase3 v-if="phase >= 3"/>
   </div>
 </template>
 
@@ -14,12 +14,23 @@ import Phase3 from '@/views/student/Phase3.vue'
 
 export default {
   name: 'Home',
-  props: ['stupanj'],
+  props: ['phase'],
   components: {
     Phase1,
     Phase2,
     Phase3
   },
+  data() {
+        return {
+            ime: 'Ivan',
+            prezime: 'Ivanić',
+            oib: '012345678',
+            godina: '1',
+            studij: 'FET',
+            smjerovi: ['Financijski management', 'Management i poduzetništvo', 'Marketinško upravljanje', 'Informatički menadžment', 'Turizam'],
+            isModalVisible: false
+        }
+    },  
   methods: {
     prihvati(broj) {
       this.$emit('prihvatio', broj);

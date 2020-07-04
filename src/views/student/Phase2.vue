@@ -15,6 +15,9 @@
 </template>
 
 <script>
+import firebase from 'firebase'
+import db from '@/firebase/firebaseInit'
+
 import UploadBill from '@/views/student/UploadBill'
 
 export default {
@@ -25,6 +28,7 @@ export default {
     },
     data() {
         return {
+            user: firebase.auth().currentUser,
             račun: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
             prototip: "http://www.africau.edu/images/default/sample.pdf",
             upload: "",
@@ -37,7 +41,21 @@ export default {
             this.upload = billData;
             this.status = 1;
             this.$emit('prihvat io', 3);
-        }
+        },
+        userDocListener(){ //refreshes userDoc (coz new friends/blocked)
+            db.collection("users").where("uID","==",this.user.uid)
+            .onSnapshot(snapshot => {
+                snapshot.forEach(doc => {
+                    this.userDoc = doc.data()
+                    this.ime = this.userDoc.firstName
+                    this.prezime = this.userDoc.lastName
+                    this.oib = this.userDoc.oib
+                    this.godina = this.userDoc.year
+                    this.studij = this.userDoc.university
+                    this.smjerovi = this.userDoc.courses
+                })
+            })
+        },
     }
 };
 </script>

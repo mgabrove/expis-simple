@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Navbar :stupanj="stupanj"/>
-    <router-view :stupanj="stupanj" @prihvatio='prihvati' @prihvatio1='prihvati1'/>
+    <router-view @prihvatio='prihvati'/>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   },
   data () {
     return {
-      stupanj: 1
+      stupanj: 0
     }
   },
   methods: {
