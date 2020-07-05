@@ -13,8 +13,8 @@
         </section>
         <footer class="modal-footer">
           <slot name="footer">
-            <button type="button" class="btn-close" @click.prevent="approve" aria-label="Close modal">Prihvati</button>
-            <button type="button" class="btn-close" @click.prevent="decline" aria-label="Close modal">Odbij</button>
+            <button type="button" class="btn-close" @click="approve" aria-label="Close modal">Prihvati</button>
+            <button type="button" class="btn-close" @click="decline" aria-label="Close modal">Odbij</button>
           </slot>
         </footer>
       </div>

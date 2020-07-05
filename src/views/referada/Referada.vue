@@ -3,22 +3,22 @@
         <div>
             <h2>Čekaju</h2>
             <BillEntry v-for="user in usersWait" :key="user.oib" 
-            :user="user" @change1="change1" @change="change" style="background: yellow;"/>
+            :user="user" @change1="changing1" @change="changing" style="background: yellow;"/>
         </div>
         <div>
             <h2>Odbijeni</h2>
             <BillEntry v-for="user in usersDen" :key="user.oib" 
-            :user="user" @change1="change1" @change="change" style="background: red;"/>
+            :user="user" @change1="changing1" @change="changing" style="background: red;"/>
         </div>
         <div>
             <h2>Prihvaćeni</h2>
             <BillEntry v-for="user in usersApp" :key="user.oib" 
-            :user="user" @change1="change1" @change="change" style="background: green;"/>
+            :user="user" @change1="changing1" @change="changing" style="background: green;"/>
         </div>
         <div>
             <h2>Nisu u obradi</h2>
             <BillEntry v-for="user in usersNon" :key="user.oib"      
-            :user="user" @change1="change1" @change="change" style="background: lightgray;"/>
+            :user="user" @change1="changing1" @change="changing" style="background: lightgray;"/>
         </div>
     </div>
 </template>
@@ -27,7 +27,7 @@
 import firebase from 'firebase'
 import db from '@/firebase/firebaseInit'
 
-import BillEntry from "@/views/referada/BillEntry.vue"
+import BillEntry from "@/views/referada/BillEntry"
 
 export default {
     components: {
@@ -39,75 +39,51 @@ export default {
             usersDen: [],
             usersApp: [],
             usersNon: [],
-            user:  firebase.auth().currentUser,
-            userDoc: null,
+            user: null,
+            userDoc: firebase.auth().currentUser,
             filterDropdown: false,
             searchTerm: "",
             status: null,
-            temp: null
+            temp: ""
         }
     },
 
     methods: {
-        change(broj){
+        changing(broj){
             {  
-                var pom = null
-                var goup = 2
-
-                for(var i = 0; i < this.usersWait.length; i++) {
-                    if(this.usersWait[i].oib === this.temp){
-                        pom = this.usersWait[i]
-                        this.usersWait.splice(i, i+1);
-                    }
-                }
-                for(i = 0; i < this.usersDen.length; i++) {
-                    if(this.usersDen[i].oib === this.temp){
-                        pom = this.usersDen[i]
-                        this.usersDen.splice(i, i+1);
-                    }
-                }
-                for(i = 0; i < this.usersApp.length; i++) {
-                    if(this.usersApp[i].oib === this.temp){
-                        pom = this.usersApp[i]
-                        this.usersApp.splice(i, i+1);
-                    }
-                }
-                for(i = 0; i < this.usersNon.length; i++) {
-                    if(this.usersNon[i].oib === this.temp){
-                        pom = this.usersNon[i]
-                        this.usersNon.splice(i, i+1);
-                    }
-                }
+                var goup = 2;
                 if(broj === 1) {
-                    this.usersApp.push(pom);
                     goup = 3
                 }
-                else if(broj === -1) {
-                    this.usersDen.push(pom);
-                }
-                console.log("TU SAM")
-                db.collection("users").where("oib","==",this.temp)
-                .onSnapshot(snapshot => {
+                //neprijatelj
+                console.log("TOSADPRIJE")
+                console.log(this.temp)
+                db.collection("users").where("oib","==",this.temp).get()
+                .then(snapshot => {
                     snapshot.forEach(doc => {
                         db.collection("users").doc(doc.id).update({ 
                             phase: goup,
                             status: broj
                         })
-                    })
+                    }) 
                 })
+                //imam te pizdo
             }
         },
-        change1(oib){
+        changing1(oib){
             this.temp = oib
-        }
-},
-    created(){
-        console.log("TU SAM")
-            db.collection("users").get().then(snap => {
+        },
+        userDocListener(){ //refreshes userDoc (coz new friends/blocked)
+            db.collection("users").where("isRef", "==", false)
+            .onSnapshot(snap => {
+                this.usersWait = [],
+                this.usersDen = [],
+                this.usersApp = [],
+                this.usersNon = [],
                 snap.forEach(doc => {
-                    var user = doc.data();
+                    console.log("SAM TU?")
+                    var user = doc.data()
                     if(user.isRef === false){ //preskoci ref
-                        user.docid = doc.id;
                         if(user.status === 0) {
                             this.usersWait.push(user);
                         }
@@ -121,11 +97,13 @@ export default {
                             this.usersNon.push(user);
                         }
                     }
-                    else if (user.isRef === true & user.uID === this.user.uid){
-                        this.userDoc = user 
-                    }
                 })
             })
+        }
+    },
+    mounted(){
+        console.log("TU SAM")
+        this.userDocListener()
     }
 
 }

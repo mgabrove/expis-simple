@@ -93,7 +93,9 @@ export default {
             console.log("TU SAM")
                 db.collection("users").where("uID","==",this.user.uid)
                 .onSnapshot(snapshot => {
+                    console.log(snapshot)
                     snapshot.forEach(doc => {
+                        console.log(doc)
                         db.collection("users").doc(doc.id).update({ 
                             phase: 2,
                             courses: this.smjerovi
