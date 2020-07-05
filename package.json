@@ -4,7 +4,7 @@
   "private": true,
   "engines": {
     "node": "12.13.1"
-  },
+  },  
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -21,7 +21,8 @@
     "popper.js": "^1.16.1",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
-    "vuex": "^3.4.0"
+    "vuex": "^3.4.0",
+    "express":"*"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.13.1",
