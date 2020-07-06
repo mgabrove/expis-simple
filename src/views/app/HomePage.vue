@@ -35,8 +35,7 @@ export default {
             this.phase = broj;
             this.$emit('prihvatio', broj);
         },
-        userDocListener(){ //refreshes userDoc (coz new friends/blocked)
-            console.log("TU SAM")
+        userDocListener(){
             db.collection("users").where("uID","==",this.user.uid)
             .onSnapshot(snapshot => {
                 snapshot.forEach(doc => {

@@ -39,7 +39,6 @@ export default {
     computed: {
     },
 }
-//<a :href="user.billFull" target="_blank" class="col-2"><button>Račun</button></a>
 </script>
 
 <style>

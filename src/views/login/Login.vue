@@ -31,7 +31,6 @@ export default {
     methods: {
         login () {
             if (this.username && this.password) {
-                console.log("TU SAM")
                 this.feedback = null
                 firebase.auth().signInWithEmailAndPassword(this.username, this.password)
                 .then(() => {

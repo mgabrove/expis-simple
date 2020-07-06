@@ -39,7 +39,7 @@ export default {
         storeBill (billData) {
             this.change(billData, 0);
         },
-        userDocListener(){ //refreshes userDoc (coz new friends/blocked)
+        userDocListener(){ 
             this.user = firebase.auth().currentUser
             db.collection("users").where("uID","==",this.user.uid)
             .onSnapshot(snapshot => {
@@ -57,7 +57,6 @@ export default {
                 db.collection("users").where("uID","==",this.user.uid).get()
                 .then(snapshot => {
                     snapshot.forEach(doc => {
-                        console.log(doc.id)
                         db.collection("users").doc(doc.id).update({ 
                             billFull: upload,
                             status: num

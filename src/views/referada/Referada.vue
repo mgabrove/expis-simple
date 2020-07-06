@@ -73,7 +73,7 @@ export default {
         changing1(oib){
             this.temp = oib
         },
-        userDocListener(){ //refreshes userDoc (coz new friends/blocked)
+        userDocListener(){ 
             db.collection("users").where("isRef", "==", false)
             .onSnapshot(snap => {
                 this.usersWait = [],
@@ -81,7 +81,6 @@ export default {
                 this.usersApp = [],
                 this.usersNon = [],
                 snap.forEach(doc => {
-                    console.log("SAM TU?")
                     var user = doc.data()
                     if(user.isRef === false){ //preskoci ref
                         if(user.status === 0) {
@@ -102,7 +101,6 @@ export default {
         }
     },
     mounted(){
-        console.log("TU SAM")
         this.userDocListener()
     }
 

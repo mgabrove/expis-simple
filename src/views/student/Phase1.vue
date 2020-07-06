@@ -90,7 +90,6 @@ export default {
         })
         },
         change(){
-            console.log("TU SAM")
                 db.collection("users").where("uID","==",this.user.uid)
                 .onSnapshot(snapshot => {
                     console.log(snapshot)
