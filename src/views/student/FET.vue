@@ -1,6 +1,6 @@
 <template>
     <div class="modal-backdrop1">
-      <div class="modal1 col-4" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDescription">
+      <div class="modal1 col-md-4 col-10" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDescription">
         <header class="modal-header" id="modalTitle">
           <slot name="header">
             Izbor prioriteta smjerova
@@ -11,11 +11,11 @@
             <ul class="list-group">
                 <li v-for="(smjer, broj) in smjerovi" v-bind:key="broj" class="list-group-item">
                     <span>{{smjer}}</span>
-                    <div class="btn-group button-caret-group">
-                        <button class="btn button-caret-up" v-on:click="move(broj,broj-1)" :disabled="broj==0">
+                    <div class="btn-group button-caret-group">  
+                        <button class="btn button-caret-up shadow-none" v-on:click="move(broj,broj-1)" :disabled="broj==0">
                             <i class="fas fa-caret-square-up"></i>         
                         </button>
-                        <button class="btn button-caret-down" v-on:click="move(broj,broj+1)" :disabled="broj==(smjerovi.length-1)">
+                        <button class="btn button-caret-down shadow-none" v-on:click="move(broj,broj+1)" :disabled="broj==(smjerovi.length-1)">
                             <i class="fas fa-caret-square-down"></i>
                         </button>
                     </div>

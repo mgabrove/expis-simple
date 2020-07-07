@@ -1,8 +1,12 @@
 <template>
   <div class="home top10">
     <Phase1 :phase="phase" v-if="phase >= 1" @prihvatio='prihvati'/>
-    <Phase2 v-if="phase >= 2"/>
-    <Phase3 v-if="phase >= 3"/>
+    <div class="container">
+      <div class="row margin-remove" style="display:flex;">
+        <Phase2 v-if="phase >= 2" class="offset-md-1 col-md-5 col-12"/>
+        <Phase3 v-if="phase >= 3" class="col-md-5 pull-right-md col-md-pull-1 col-12"/>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -38,3 +42,11 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+@media (min-width: 1200px) {
+    .pull-right-md {
+        float: right;
+    }
+}
+</style>

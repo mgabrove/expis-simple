@@ -1,16 +1,9 @@
 <template>
-    <div class="col-12 flexdisplay">
+    <div>
         <div>
-            <a :href="račun" target="_blank"><button>Račun za upis</button></a>
-            <a :href="prototip" target="_blank"><button>Prototip ugovora</button></a>
+            <a :href="račun" target="_blank" class="floating-left"><button class="btn btn-primary shadow-none" style="background-color:#232323; border-color:#232323;">Račun</button></a>
+            <a :href="prototip" target="_blank" class="floating-left"><button class="btn btn-primary shadow-none" style="background-color:#232323; border-color:#232323; margin-left:10px;">Prototip ugovora</button></a>
         </div>
-        <div class="flexdisplay">
-            <UploadBill :status="status" @send="storeBill"/>
-            <a :href="upload" target="_blank" v-if="status === -1"><button class="red-button">Odbijeno</button></a>
-            <a :href="upload" target="_blank" v-if="status === 0"><button class="yellow-button">Obrada</button></a>
-            <a :href="upload" target="_blank" v-if="status === 1"><button class="green-button">Prihvaćeno</button></a>
-        </div>
-
     </div>
 </template>
 
@@ -18,27 +11,18 @@
 import firebase from 'firebase'
 import db from '@/firebase/firebaseInit'    
 
-import UploadBill from '@/views/student/UploadBill'
-
 export default {
     name: 'phase2',
     props: ['stupanj'],
-    components: {
-        UploadBill
-    },
     data() {
         return {
             user: firebase.auth().currentUser,
             račun: "",
             prototip: "",
-            upload: "",
             status: ""
         }
     },  
     methods: {
-        storeBill (billData) {
-            this.change(billData, 0);
-        },
         userDocListener(){ 
             this.user = firebase.auth().currentUser
             db.collection("users").where("uID","==",this.user.uid)
@@ -47,22 +31,9 @@ export default {
                     this.userDoc = doc.data()
                     this.račun = doc.data().billPt
                     this.prototip = doc.data().contractPt
-                    this.upload = doc.data().billFull
                     this.status = doc.data().status
                 })
             })
-        },
-        change(upload, num){
-                this.user = firebase.auth().currentUser
-                db.collection("users").where("uID","==",this.user.uid).get()
-                .then(snapshot => {
-                    snapshot.forEach(doc => {
-                        db.collection("users").doc(doc.id).update({ 
-                            billFull: upload,
-                            status: num
-                        })
-                    })
-                })
         }
     },
     mounted () {
@@ -70,3 +41,12 @@ export default {
     },
 };
 </script>
+
+
+<style scoped>
+    @media (min-width: 992px) {
+        .floating-left {
+            float:left;
+        }
+    }
+</style>

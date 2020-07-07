@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="margin-top-100">
         <Student v-if="isRef === false" :phase="phase" @prihvatio='prihvati'/>
         <Referada v-if="isRef === true" />
     </div>
