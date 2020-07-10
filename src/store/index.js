@@ -76,8 +76,8 @@ export default new Vuex.Store({
       .onSnapshot(snapshot => {
           snapshot.forEach(doc => {
               db.collection("users").doc(doc.id).update({ 
-                  acceptedEnrollment: true,
-                  canDownloadBill: true,
+                  acceptedEnrollment: this.state.acceptedEnrollment,
+                  canDownloadBill: this.state.canDownloadBill,
                   modulePreferences: this.state.courses
               })
           })
@@ -89,7 +89,7 @@ export default new Vuex.Store({
       .onSnapshot(snapshot => {
           snapshot.forEach(doc => {
               db.collection("users").doc(doc.id).update({ 
-                  canDownloadAAI: true
+                  canDownloadAAI: this.state.canDownloadAAI
               })
           })
       })
@@ -100,9 +100,9 @@ export default new Vuex.Store({
       .onSnapshot(snapshot => {
           snapshot.forEach(doc => {
               db.collection("users").doc(doc.id).update({ 
-                acceptedEnrollment: false,
-                canDownloadBill: false,
-                canDownloadAAI: false
+                acceptedEnrollment: this.state.acceptedEnrollment,
+                canDownloadBill: this.state.canDownloadBill,
+                canDownloadAAI: this.state.canDownloadAAI
               })
           })
       })

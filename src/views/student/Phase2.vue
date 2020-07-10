@@ -15,6 +15,7 @@ export default {
     },  
     methods: {
         pushingForwardDummy () {
+            this.$store.state.canDownloadAAI = true
             this.$store.dispatch('downloadAIIDummy')
         }
     },

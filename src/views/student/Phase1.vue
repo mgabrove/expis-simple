@@ -185,6 +185,8 @@ export default {
             this.isConfirmVisible = false
         },
         prihvati() {
+            this.$store.state.acceptedEnrollment = true
+            this.$store.state.canDownloadBill = true
             this.$store.dispatch('acceptEnrollment')
         },
     },
