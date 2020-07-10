@@ -83,6 +83,31 @@ export default new Vuex.Store({
           })
       })
     },
+    downloadAIIDummy(){
+      this.user = firebase.auth().currentUser
+      db.collection("users").where("uID","==",this.user.uid)
+      .onSnapshot(snapshot => {
+          snapshot.forEach(doc => {
+              db.collection("users").doc(doc.id).update({ 
+                  canDownloadAAI: true
+              })
+          })
+      })
+    },
+    refreshScenarioDummy(){
+      this.user = firebase.auth().currentUser
+      db.collection("users").where("uID","==",this.user.uid)
+      .onSnapshot(snapshot => {
+          snapshot.forEach(doc => {
+              db.collection("users").doc(doc.id).update({ 
+                acceptedEnrollment: false,
+                canDownloadBill: false,
+                canDownloadAAI: false
+              })
+          })
+      })
+    },
+
     /*login(credentials){
       axios.post('https://ira.unipu.hr/info/login', {
         username: credentials.username,
