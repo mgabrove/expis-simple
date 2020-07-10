@@ -1,14 +1,11 @@
 <template>
-    <div class="margin-top-100">
-        <Student v-if="isRef === false" :phase="phase" @prihvatio='prihvati'/>
-        <Referada v-if="isRef === true" />
+    <div v-if="$store.state.render" class="margin-top-120">
+        <Student v-if="$store.state.oib != null"/>
+        <Referada v-if="$store.state.oib === null"/>
     </div>
 </template>
 
 <script>
-import firebase from 'firebase'
-import db from '@/firebase/firebaseInit'
-
 import Student from '@/views/student/Student.vue'
 import Referada from '@/views/referada/Referada.vue'
 
@@ -19,40 +16,12 @@ export default {
     },
     data () {
         return {
-            profile: null,
-            user: firebase.auth().currentUser,
-            currentUser: null,
-            loading: true,
-            userDoc: null,
-            phase: null,
-            isRef: null,
-            ime: null,
-            prezime: null
         };
     },
     methods: {
-        prihvati(broj) {
-            this.phase = broj;
-            this.$emit('prihvatio', broj);
-        },
-        userDocListener(){
-            db.collection("users").where("uID","==",this.user.uid)
-            .onSnapshot(snapshot => {
-                snapshot.forEach(doc => {
-                    this.userDoc = doc.data()
-                    this.isRef = doc.data().isRef
-                    this.phase = doc.data().phase
-                    this.ime = doc.data().firstName
-                    this.prezime = doc.data().lastName
-                })
-                this.$emit('prihvatio', this.phase)
-                this.$emit('prihvatio1', this.ime)
-                this.$emit('prihvatio2', this.prezime)
-            })
-        }
     },
     mounted () {
-        this.userDocListener()
+        this.$store.dispatch('retrieveInfo')
     },
 };
 </script>

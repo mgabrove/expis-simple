@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-backdrop1">
+    <div class="modal-backdrop1" style="z-index:1;">
       <div class="modal1 col-4" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDescription">
         <header class="modal-header" id="modalTitle">
           <slot name="header">
@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     close(broj) {
-      this.$emit('close', broj);
+      this.$emit('close', broj)
     },
     approve() {
       this.close(1)

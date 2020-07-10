@@ -11,7 +11,7 @@
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary shadow-none" style="background-color:#232323; border-color:#232323;" @click.prevent="login">Login</button>
-                <p v-if="feedback" class="mt-3 feedback">{{feedback}}</p>
+                <p v-if="$store.state.feedback" class="mt-3 feedback">{{$store.state.feedback}}</p>
             </div>
     </div>
 </template>
@@ -24,31 +24,50 @@ export default {
         return {
             username: null,
             password: null,
-            feedback: null,
             submitted: null
         }
     },
     methods: {
         login () {
+            this.$store.state.username = this.username
             if (this.username && this.password) {
-                this.feedback = null
+                this.$store.state.feedback = null
                 firebase.auth().signInWithEmailAndPassword(this.username, this.password)
                 .then(() => {
                     this.$router.push({ 
                         name: 'HomePage'
                     })
                 }).catch(err => {
-                    this.feedback = err.message
+                    this.$store.state.feedback = err.message
                 })
             } else {
-                this.feedback = 'Please fill out both fields'
+                this.$store.state.feedback = 'Please fill out both fields'
             }
         },
+        /* login1 () {
+            this.$store.state.feedback = null
+            this.$store.state.username = this.username
+            if (this.username && this.password) {
+                this.$store.dispatch('login', {
+                    username: this.username,
+                    password: this.password
+                })
+                .then(response => {
+                    this.$router.push({
+                        name: 'HomePage'
+                    })
+                }).catch(err => {
+                    this.$store.state.feedback = err.message
+                })
+            } else {
+                this.$store.state.feedback = 'Please fill out both fields'
+            }
+        } */
         enterClicked () {
             this.login()
         }
     }
-};
+}
 </script>
 
 <style scoped>

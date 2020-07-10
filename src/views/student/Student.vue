@@ -1,10 +1,10 @@
 <template>
   <div class="home top10">
-    <Phase1 :phase="phase" v-if="phase >= 1" @prihvatio='prihvati'/>
+    <Phase1/>
     <div class="container">
       <div class="row margin-remove" style="display:flex;">
-        <Phase2 v-if="phase >= 2" class="offset-md-1 col-md-5 col-12"/>
-        <Phase3 v-if="phase >= 3" class="col-md-5 pull-right-md col-md-pull-1 col-12"/>
+        <Phase2 v-if="$store.state.canDownloadBill === true" class="offset-md-1 col-md-5 col-12"/>
+        <Phase3 v-if="$store.state.canDownloadAAI === true" class="col-md-5 pull-right-md col-md-pull-1 col-12"/>
       </div>
     </div>
   </div>
@@ -18,7 +18,6 @@ import Phase3 from '@/views/student/Phase3.vue'
 
 export default {
   name: 'Home',
-  props: ['phase'],
   components: {
     Phase1,
     Phase2,
@@ -26,19 +25,9 @@ export default {
   },
   data() {
         return {
-            ime: 'Ivan',
-            prezime: 'Ivanić',
-            oib: '012345678',
-            godina: '1',
-            studij: 'FET',
-            smjerovi: ['Financijski management', 'Management i poduzetništvo', 'Marketinško upravljanje', 'Informatički menadžment', 'Turizam'],
-            isModalVisible: false
         }
     },  
   methods: {
-    prihvati(broj) {
-      this.$emit('prihvatio', broj);
-    }
   },
 }
 </script>
