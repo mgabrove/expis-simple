@@ -43,6 +43,9 @@ export default new Vuex.Store({
     },
     moduleList(state) {
       return state.courses
+    },
+    billUrl(state) {
+      return ("http://ira.unipu.hr/files/codes/"+state.billKey+"/racun-"+state.oib+".png")
     }
   },
   mutations: {
@@ -51,9 +54,6 @@ export default new Vuex.Store({
       var temp_to = state.courses[data.to]
       state.courses.splice(data.from, 1, temp_to)
       state.courses.splice(data.to, 1, temp_from)
-    },
-    setCanDownloadAAI(state) {
-      state.canDownloadAAI = true
     },
     acceptEnrollment(state) {
       state.acceptedEnrollment = true
@@ -122,7 +122,6 @@ export default new Vuex.Store({
         context.commit('destroyToken')
       }
     },
-
     /* destroyToken(context) {
       if(context.getters.loggedin) {
         return new Promise((resolve, reject) => {
@@ -142,73 +141,9 @@ export default new Vuex.Store({
         })
       }
     }, */
-
-    setCanDownloadAAI(context) {
-      context.commit('setCanDownloadAAI')
-    },
     hasAcceptedEnrollment(context) {
       context.commit('hasAcceptedEnrollment')
     },
-    /* retrieveInfo(context){
-      var user = firebase.auth().currentUser
-      db.collection("users").where("uID","==",user.uid)
-      .onSnapshot(snapshot => {
-          snapshot.forEach(doc => {
-            context.commit('retrieveInfo', doc)
-          })
-      })
-    }, */
-    /* acceptEnrollment(){
-      var user = firebase.auth().currentUser
-      db.collection("users").where("uID","==",user.uid)
-      .onSnapshot(snapshot => {
-          snapshot.forEach(doc => {
-              db.collection("users").doc(doc.id).update({ 
-                  acceptedEnrollment: this.state.acceptedEnrollment,
-                  canDownloadBill: this.state.canDownloadBill,
-                  modulePreferences: this.state.courses
-              })
-          })
-      })
-    },
-    downloadAIIDummy(){
-      var user = firebase.auth().currentUser
-      db.collection("users").where("uID","==",user.uid)
-      .onSnapshot(snapshot => {
-          snapshot.forEach(doc => {
-              db.collection("users").doc(doc.id).update({ 
-                  canDownloadAAI: this.state.canDownloadAAI
-              })
-          })
-      })
-    },
-    refreshScenarioDummy(){
-      this.user = firebase.auth().currentUser
-      db.collection("users").where("uID","==",this.user.uid)
-      .onSnapshot(snapshot => {
-          snapshot.forEach(doc => {
-              db.collection("users").doc(doc.id).update({ 
-                acceptedEnrollment: this.state.acceptedEnrollment,
-                canDownloadBill: this.state.canDownloadBill,
-                canDownloadAAI: this.state.canDownloadAAI
-              })
-          })
-      })
-    }, */
-
-    /*login(credentials){
-      axios.post('/login', {
-        username: credentials.username,
-        password: credentials.password
-      })
-      .then(response => {
-        const token = response.data.token
-        localStorage.setItem('access_token', token)
-      })
-      .catch(error => {
-        this.$store.state.feedback = error.message
-      })
-    }*/
     acceptEnrollment(context){
       if(context.state.courses != null) {
         axios.defaults.headers.common['Authorization'] = 'basic ' + context.state.token
@@ -232,7 +167,6 @@ export default new Vuex.Store({
       }
       context.dispatch('retrieveInfo')
     },
-
     retrieveInfo(context){
       axios.defaults.headers.common['Authorization'] = 'basic ' + context.state.token
       axios.get('/info/'+context.state.username)

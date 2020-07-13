@@ -1,7 +1,8 @@
 <template>
     <div>
         <div>
-            <a :href="$store.state.billKey" target="_blank" class="floating-left"><button @click="pushingForwardDummy" class="btn btn-primary shadow-none" style="background-color:#232323; border-color:#232323;">Račun</button></a>
+            <a :href="$store.state.billKey" target="_blank" class="floating-left"><img :src="$store.getters.billUrl"></a>
+            <button class="btn btn-primary shadow-none floating-left" style="background-color:#232323; border-color:#232323;">Račun</button>
         </div>
     </div>
 </template>
@@ -14,10 +15,7 @@ export default {
         }
     },  
     methods: {
-        pushingForwardDummy () {
-            this.$store.dispatch('setCanDownloadAAI')
-            this.$store.dispatch('downloadAIIDummy')
-        }
+
     },
 };
 </script>
