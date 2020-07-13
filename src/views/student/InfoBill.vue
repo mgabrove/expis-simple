@@ -13,8 +13,7 @@
         </section>
         <footer class="modal-footer">
           <slot name="footer">
-            <button type="button" class="btn-close" @click="approve" aria-label="Close modal">Prihvati</button>
-            <button type="button" class="btn-close" @click="decline" aria-label="Close modal">Odbij</button>
+            <button type="button" class="btn-close" @click="close" aria-label="Close modal">Zatvori</button>
           </slot>
         </footer>
       </div>
@@ -31,14 +30,8 @@ export default {
     }
   },
   methods: {
-    close(broj) {
-      this.$emit('close', broj)
-    },
-    approve() {
-      this.close(1)
-    },
-    decline() {
-      this.close(-1)
+    close() {
+      this.$emit('close')
     }
   },
 };
