@@ -125,17 +125,6 @@ export default new Vuex.Store({
         context.commit('destroyToken')
       }
     },
-    acceptEnrollment(context){
-      axios.defaults.headers.common['Authorization'] = 'basic ' + context.state.token
-      axios.patch('/info/'+context.state.username, {
-        acceptedEnrollment: true,
-        modulePreferences: context.state.courses
-      })
-      .then(() => {
-        context.commit('acceptEnrollment')
-      }) 
-      .catch(error => console.log(error))
-    },
 
     /* destroyToken(context) {
       if(context.getters.loggedin) {
@@ -226,6 +215,28 @@ export default new Vuex.Store({
         this.$store.state.feedback = error.message
       })
     }*/
+    acceptEnrollment(context){
+      if(context.state.courses != null) {
+        axios.defaults.headers.common['Authorization'] = 'basic ' + context.state.token
+        axios.patch('/info/'+context.state.username, {
+          acceptedEnrollment: true,
+          modulePreferences: context.state.courses
+        })
+        .then(() => {
+          context.commit('acceptEnrollment')
+        }) 
+        .catch(error => console.log(error))
+      } else {
+        axios.defaults.headers.common['Authorization'] = 'basic ' + context.state.token
+        axios.patch('/info/'+context.state.username, {
+          acceptedEnrollment: true,
+        })
+        .then(() => {
+          context.commit('acceptEnrollment')
+        }) 
+        .catch(error => console.log(error))        
+      }
+    },
 
     retrieveInfo(context){
       axios.defaults.headers.common['Authorization'] = 'basic ' + context.state.token
