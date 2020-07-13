@@ -19,13 +19,14 @@ export default new Vuex.Store({
     surname: null,
     oib: null,
     course: null,
-    courseForm: null,
+    faculty: null,
+    fullTimeStudent: null,
+    notStudiedBefore: null,
     dateOfBirth: null,
     postalTown: null,
     postalNumber: null,
     streetAddress: null,
     telephone: null,
-    citizenship: null,
     placement: null,
     upisniBroj: null,
     courses: null,
@@ -71,7 +72,9 @@ export default new Vuex.Store({
       state.surname = doc.data.surname
       state.oib = doc.data.oib
       state.course = doc.data.course
-      state.courseForm = doc.data.courseForm
+      state.faculty = doc.data.faculty
+      state.fullTimeStudent = doc.data.fullTimeStudent
+      state.notStudiedBefore = doc.data.notStudiedBefore
       state.dateOfBirth = doc.data.dateOfBirth
       state.postalTown = doc.data.postalTown
       state.postalNumber = doc.data.postalCode

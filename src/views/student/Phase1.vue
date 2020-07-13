@@ -4,46 +4,40 @@
         <table class="table table-striped offset-1 col-10 hidden-xs">
             <tbody>
                 <tr>
-                    <td class="table_title">Ime</td>
-                    <td class="table_content">{{$store.state.name}}</td>
-                    <td class="table_title">Državljanstvo</td>
-                    <td class="table_content">{{$store.state.citizenship}}</td>
-                </tr>
-                <tr>
-                    <td class="table_title">Prezime</td>
-                    <td class="table_content">{{$store.state.surname}}</td>
+                    <td class="table_title">OIB</td>
+                    <td class="table_content">{{$store.state.oib}}</td>
                     <td class="table_title">Telefon</td>
                     <td class="table_content">{{$store.state.telephone}}</td>
                 </tr>
                 <tr>
-                    <td class="table_title">OIB</td>
-                    <td class="table_content">{{$store.state.oib}}</td>
-                    <td class="table_title">Plasman za upis</td>
-                    <td class="table_content">{{$store.state.placement}}</td>
+                    <td class="table_title">Ime</td>
+                    <td class="table_content">{{$store.state.name}}</td>
+                    <td class="table_title">Fakultet</td>
+                    <td class="table_content">{{$store.state.faculty}}</td>
                 </tr>
                 <tr>
-                    <td class="table_title">Datum rođenja</td>
-                    <td class="table_content">{{$store.state.dateOfBirth}}</td>
-                    <td class="table_title">ID za upis</td>
-                    <td class="table_content">{{$store.state.upisniBroj}}</td>
-                </tr>
-                <tr>
-                    <td class="table_title">Mjesto</td>
-                    <td class="table_content">{{$store.state.postalTown}}</td>
-                    <td class="table_title">Odabran studij</td>
+                    <td class="table_title">Prezime</td>
+                    <td class="table_content">{{$store.state.surname}}</td>
+                    <td class="table_title">Studij</td>
                     <td class="table_content">{{$store.state.course}}</td>
                 </tr>
                 <tr>
                     <td class="table_title">Poštanski broj</td>
-                    <td class="table_content">{{$store.state.postalNumber}}</td>
-                    <td class="table_title">Vrsta studija</td>
-                    <td class="table_content">{{$store.state.courseForm}}</td>
+                    <td class="table_content">{{$store.state.postalBroj}}</td>
+                    <td class="table_title">Prvi studij</td>
+                    <td class="table_content">{{$store.state.notStudiedBefore}}</td>
                 </tr>
                 <tr>
-                    <td class="table_title">Ulica</td>
+                    <td class="table_title">Mjesto</td>
+                    <td class="table_content">{{$store.state.postalTown}}</td>
+                    <td class="table_title">Vrsta studiranja</td>
+                    <td class="table_content">{{$store.state.fullTimeStudent}}</td>
+                </tr>
+                <tr>
+                    <td class="table_title">Adresa</td>
                     <td class="table_content">{{$store.state.streetAddress}}</td>
                     <td class="table_title">
-                        Smjer
+                        Moduli
                         <button v-if="$store.state.courses != undefined" class="btn btn-primary shadow-none" style="background-color:#232323; border-color:#232323;" @click="showFET">IZMIJENI</button>
                     </td>
                     <td v-if="$store.state.courses === null" class="table_content">/</td>

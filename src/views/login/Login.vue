@@ -62,6 +62,9 @@ export default {
                         console.log(err)
                     })
                 })
+                .catch(() => {
+                    this.$store.state.feedback = 'Popunite oba polja'
+                })
             }
         },
         enterClicked () {
