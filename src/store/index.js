@@ -54,7 +54,6 @@ export default new Vuex.Store({
     },
     acceptEnrollment(state) {
       state.acceptedEnrollment = true
-      state.canDownloadBill = true
     },
     engageRefreshScenarioDummy(state) {
       state.canDownloadBill = false

@@ -43,7 +43,7 @@
                     <td class="table_content">{{$store.state.streetAddress}}</td>
                     <td class="table_title">
                         Smjer
-                        <button v-if="$store.state.acceptEnrollment === false" class="btn btn-primary shadow-none" style="background-color:#232323; border-color:#232323;" @click="showFET">Izmjeni</button>
+                        <button v-if="$store.state.acceptedEnrollment != true" class="btn btn-primary shadow-none" style="background-color:#232323; border-color:#232323;" @click="showFET">Izmjeni</button>
                     </td>
                     <td v-if="$store.state.courses === null" class="table_content">/</td>
                     <td v-if="$store.state.courses !== null" class="table_content">
@@ -135,7 +135,7 @@
                 </tbody>
             </table>
         </div>        
-        <div v-if="$store.state.acceptEnrollment === false">
+        <div v-if="$store.state.acceptedEnrollment != true">
             <button class="btn btn-primary shadow-none" style="background-color:#232323; border-color:#232323;" @click="showConfirm">Prihvati</button>
             <button class="btn btn-primary shadow-none" style="background-color:#232323; border-color:#232323; margin-left:10px;" @click="showDecline">Odbij</button>
         </div>
