@@ -43,7 +43,7 @@
                     <td class="table_content">{{$store.state.streetAddress}}</td>
                     <td class="table_title">
                         Smjer
-                        <button v-if="$store.state.courses != false" class="btn btn-primary shadow-none" style="background-color:#232323; border-color:#232323;" @click="showFET">Izmjeni</button>
+                        <button v-if="$store.state.courses != undefined" class="btn btn-primary shadow-none" style="background-color:#232323; border-color:#232323;" @click="showFET">Izmjeni</button>
                     </td>
                     <td v-if="$store.state.courses === null" class="table_content">/</td>
                     <td v-if="$store.state.courses !== null" class="table_content">
