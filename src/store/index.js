@@ -75,7 +75,7 @@ export default new Vuex.Store({
       state.courses = doc.data.modulePreferences
       state.canDownloadBill = doc.data.canDownloadBill
       state.canDownloadAAI = doc.data.canDownloadAAI
-      state.billKey = doc.data.billKey
+      state.billKey = doc.data.billHash
       state.AAIkey = doc.data.AAIkey
       state.acceptedEnrollment = doc.data.acceptedEnrollment
       state.render = true
