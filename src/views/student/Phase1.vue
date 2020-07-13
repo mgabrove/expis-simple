@@ -1,6 +1,6 @@
 <template>
     <div>
-        <p>Osobni podaci</p>
+        <h2>Osobni podaci</h2>
         <table class="table table-striped offset-1 col-10 hidden-xs">
             <tbody>
                 <tr>
@@ -41,7 +41,7 @@
                         Moduli
                         <button v-if="$store.state.courses != undefined" class="btn btn-primary shadow-none" style="background-color:#232323; border-color:#232323;" @click="showFET">IZMIJENI</button>
                     </td>
-                    <td v-if="$store.state.courses === undefined" class="table_content">/</td>
+                    <td v-if="$store.state.courses === undefined" class="table_content"></td>
                     <td v-if="$store.state.courses !== undefined" class="table_content">
                         <ol>
                             <li v-for="(smjer, broj) in $store.state.courses" v-bind:key="broj">
