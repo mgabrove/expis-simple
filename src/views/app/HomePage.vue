@@ -27,7 +27,7 @@ export default {
     },
     mounted () {
         this.$store.dispatch('retrieveInfo')
-        this.title = "Upisi na UniPu - "+this.$store.getters.name+" "+this.$store.getters.surname
+        .then(this.title = "Upisi na UniPu - "+this.$store.getters.name+" "+this.$store.getters.surname)
     },
 };
 </script>
