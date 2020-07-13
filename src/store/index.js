@@ -55,11 +55,6 @@ export default new Vuex.Store({
     acceptEnrollment(state) {
       state.acceptedEnrollment = true
     },
-    engageRefreshScenarioDummy(state) {
-      state.canDownloadBill = false
-      state.canDownloadAAI = false
-      state.acceptedEnrollment = false
-    },
     retrieveInfo(state, doc) {
       console.log(doc)
       state.name = doc.data.name
@@ -150,9 +145,6 @@ export default new Vuex.Store({
     },
     hasAcceptedEnrollment(context) {
       context.commit('hasAcceptedEnrollment')
-    },
-    engageRefreshScenarioDummy(context) {
-      context.commit('engageRefreshScenarioDummy')
     },
     /* retrieveInfo(context){
       var user = firebase.auth().currentUser
