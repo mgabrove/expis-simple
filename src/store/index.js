@@ -201,7 +201,7 @@ export default new Vuex.Store({
 
     retrieveInfo(context){
       axios.defaults.headers.common['Authorization'] = 'basic ' + context.state.token
-      axios.get('/info/'+context.state.oib)
+      axios.get('/info/'+context.state.username)
       .then(response => {
         context.commit('retrieveInfo', response)
       }) 
