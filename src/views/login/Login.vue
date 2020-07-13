@@ -50,7 +50,7 @@ export default {
                 password: this.password
             })
             .then(() => {
-                await this.$router.push({
+                this.$router.push({
                     name: 'HomePage'
                 })
                 .catch(err => {
