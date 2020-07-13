@@ -22,6 +22,7 @@ export default {
     },
     mounted () {
         this.$store.dispatch('retrieveInfo')
+        this.$route.meta.title = "Upisi na UniPu - "+this.$store.getters.name+" "+this.$store.getters.surname
     },
 };
 </script>

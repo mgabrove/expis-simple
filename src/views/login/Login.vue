@@ -58,8 +58,6 @@ export default {
                         console.log(err)
                     })
                 })
-            } else {
-                this.$store.state.feedback = "Trebate popuniti oba polja"
             }
         },
         enterClicked () {
