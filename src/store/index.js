@@ -44,8 +44,10 @@ export default new Vuex.Store({
   },
   mutations: {
     move(state, data) {
+      console.log(data.from + " " + data.to)
       var temp_from = state.courses[data.from]
       var temp_to = state.courses[data.to]
+      console.log(temp_from + " " + temp_to)
       state.courses.splice(data.from, 1, temp_to)
       state.courses.splice(data.to, 1, temp_from)
     },
