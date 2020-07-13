@@ -9,7 +9,7 @@
         <section class="modal-body" id="modalDescription">
           <slot name="body">
             <ul class="list-group">
-                <li v-for="(smjer, broj) in $store.getters.moduleList" v-bind:key="broj" class="list-group-item">
+                <li v-for="(smjer, broj) in $store.state.courses" v-bind:key="broj" class="list-group-item">
                     <span>{{smjer}}</span>
                     <div class="btn-group button-caret-group">  
                         <button class="btn button-caret-up shadow-none" v-on:click="move(broj,broj-1)" :disabled="broj==0">
@@ -40,10 +40,6 @@ export default {
             this.$emit('close');
         },
         move(from, to) {
-          this.$store.dispatch('move', {
-            from: from,
-            to: to
-          })
             var temp_from = this.$store.state.courses[from]
             var temp_to = this.$store.state.courses[to]
             this.$store.state.courses.splice(from, 1, temp_to)
