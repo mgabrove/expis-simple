@@ -44,7 +44,19 @@ export default {
                 this.$store.state.feedback = 'Please fill out both fields'
             }
         },
-        /* login1 () {
+        /* login() {
+            this.$store.dispatch('retrieveToken', {
+                username: this.username,
+                password: this.password
+            })
+            .then(response => {
+                this.$router.push({
+                    name: 'HomePage'
+                })
+            })
+
+
+
             this.$store.state.feedback = null
             this.$store.state.username = this.username
             if (this.username && this.password) {

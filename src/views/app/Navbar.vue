@@ -24,10 +24,16 @@ export default {
       })
     },
     refreshScenarioDummy () {
-      this.$store.state.canDownloadBill = false
-      this.$store.state.canDownloadAAI = false
-      this.$store.state.acceptedEnrollment = false
+      this.$store.dispatch('engageRefreshScenarioDummy')
       this.$store.dispatch('refreshScenarioDummy')
+    },
+    destroyToken () {
+      this.$store.dispatch('destroyToken')
+      .then(() => {
+        this.$router.push({
+          name: 'Login'
+        })
+      })
     }
   },
 }

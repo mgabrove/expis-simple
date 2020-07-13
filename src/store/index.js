@@ -1,11 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-//import axios from 'axios'
+import axios from 'axios'
+axios.defaults.baseURL = 'http://ira.unipu.hr/expis'
 
 import firebase from 'firebase'
 import db from '@/firebase/firebaseInit'
-
-window.axios = require('axios')
 
 Vue.use(Vuex)
 
@@ -39,40 +38,115 @@ export default new Vuex.Store({
     acceptedEnrollment: null,
     render: false
   },
+  getters: {
+    loggedIn(state) {
+      return state.token != null
+    }
+  },
   mutations: {
+    setCanDownloadAAI(state) {
+      state.canDownloadAAI = true
+    },
+    hasAcceptedEnrollment(state) {
+      state.acceptedEnrollment = true
+      state.canDownloadBill = true
+    },
+    engageRefreshScenarioDummy(state) {
+      state.canDownloadBill = false
+      state.canDownloadAAI = false
+      state.acceptedEnrollment = false
+    },
+    retrieveInfo(state, doc) {
+      state.name = doc.data().name
+      state.surname = doc.data().surname
+      state.oib = doc.data().oib
+      state.course = doc.data().course
+      state.courseForm = doc.data().courseForm
+      state.dateOfBirth = doc.data().dateOfBirth
+      state.postalTown = doc.data().postalTown
+      state.postalNumber = doc.data().postalCode
+      state.streetAddress = doc.data().streetAddress
+      state.telephone = doc.data().telephone
+      state.citizenship = doc.data().citizenship
+      state.placement = doc.data().placement
+      state.upisniBroj = doc.data().upisniBroj
+      state.courses = doc.data().modulePreferences
+      state.canDownloadBill = doc.data().canDownloadBill
+      state.canDownloadAAI = doc.data().canDownloadAAI
+      state.billKey = doc.data().billKey
+      state.AAIkey = doc.data().AAIkey
+      state.acceptedEnrollment = doc.data().acceptedEnrollment
+      state.render = true
+    },
+    retrieveToken(state, token) {
+      state.token = token 
+    },
+    destroyToken(state) {
+      state.token = null
+    }
   },
   actions: {
-    retrieveInfo(){
-      this.user = firebase.auth().currentUser
-      db.collection("users").where("uID","==",this.user.uid)
+    /* retrieveToken(context, credentials) {
+      return new Promise((resolve, reject) => {
+        axios.post('/login', {
+          oib: credentials.username,
+          password: credentials.password
+        })
+        .then(response => {
+          console.log(response)
+          const token = response.data
+          console.log(token)
+          localStorage.setItem('access_token', token)
+          context.commit('retrieveToken', token)
+          resolve(response)
+        })
+        .catch(error => {
+          console.log(error)
+          reject(error)
+        })
+      }
+    }, */
+
+    /* destroyToken(context) {
+      if(context.getters.loggedin) {
+        return new Promise((resolve, reject) => {
+        axios.post('/logout')
+        .then(response => {
+          localStorage.removeItem('access_token')
+          context.commit('destroyToken')
+          resolve(response)
+        })
+        .catch(error => {
+          localStorage.removeItem('access_token')
+          context.commit('destroyToken')
+          console.log(error)
+          reject(error)
+        })
+      }
+      }
+    }, */
+
+    setCanDownloadAAI(context) {
+      context.commit('setCanDownloadAAI')
+    },
+    hasAcceptedEnrollment(context) {
+      context.commit('hasAcceptedEnrollment')
+    },
+    engageRefreshScenarioDummy(context) {
+      context.commit('engageRefreshScenarioDummy')
+    },
+    retrieveInfo(context){
+      var user = firebase.auth().currentUser
+      db.collection("users").where("uID","==",user.uid)
       .onSnapshot(snapshot => {
           snapshot.forEach(doc => {
-              this.state.name = doc.data().name
-              this.state.surname = doc.data().surname
-              this.state.oib = doc.data().oib
-              this.state.course = doc.data().course
-              this.state.courseForm = doc.data().courseForm
-              this.state.dateOfBirth = doc.data().dateOfBirth
-              this.state.postalTown = doc.data().postalTown
-              this.state.postalNumber = doc.data().postalCode
-              this.state.streetAddress = doc.data().streetAddress
-              this.state.telephone = doc.data().telephone
-              this.state.citizenship = doc.data().citizenship
-              this.state.placement = doc.data().placement
-              this.state.upisniBroj = doc.data().upisniBroj
-              this.state.courses = doc.data().modulePreferences
-              this.state.canDownloadBill = doc.data().canDownloadBill
-              this.state.canDownloadAAI = doc.data().canDownloadAAI
-              this.state.billKey = doc.data().billKey
-              this.state.AAIkey = doc.data().AAIkey
-              this.state.acceptedEnrollment = doc.data().acceptedEnrollment
-              this.state.render = true
+            context.commit('retrieveInfo', doc)
           })
       })
     },
     acceptEnrollment(){
-      this.user = firebase.auth().currentUser
-      db.collection("users").where("uID","==",this.user.uid)
+      var user = firebase.auth().currentUser
+      db.collection("users").where("uID","==",user.uid)
       .onSnapshot(snapshot => {
           snapshot.forEach(doc => {
               db.collection("users").doc(doc.id).update({ 
@@ -84,8 +158,8 @@ export default new Vuex.Store({
       })
     },
     downloadAIIDummy(){
-      this.user = firebase.auth().currentUser
-      db.collection("users").where("uID","==",this.user.uid)
+      var user = firebase.auth().currentUser
+      db.collection("users").where("uID","==",user.uid)
       .onSnapshot(snapshot => {
           snapshot.forEach(doc => {
               db.collection("users").doc(doc.id).update({ 
@@ -109,7 +183,7 @@ export default new Vuex.Store({
     },
 
     /*login(credentials){
-      axios.post('https://ira.unipu.hr/info/login', {
+      axios.post('/login', {
         username: credentials.username,
         password: credentials.password
       })
@@ -122,32 +196,11 @@ export default new Vuex.Store({
       })
     }*/
 
-    /*retrieveInfo1(){
-      axios.get('https://ira.unipu.hr/info/'+this.state.username, {
-        //...data
-      }, {
-        headers: {
-          'Authorization': `Basic ${this.state.token}`
-        }
-      })
+    /*retrieveInfo(){
+      axios.defaults.headers.common['Authorization'] = 'basic ' + context.state.token
+      axios.get('/info/'+context.state.oib)
       .then(response => {
-        this.state.name = response.data.name
-        this.state.surname = response.data.surname
-        this.state.oib = response.data.oib
-        this.state.stateOfBirth = response.data.stateOfBirth
-        this.state.postalTown = response.data.postalTown
-        this.state.postalNumber = response.data.postalCode
-        this.state.streetAddress = response.data.streetAddress
-        this.state.telephone = response.data.telephone
-        this.state.citizenship = response.data.citizenship
-        this.state.placement = response.data.placement
-        this.state.upisniBroj = response.data.upisniBroj
-        this.state.courses = response.data.modulePreferences
-        this.state.canDownloadBill = response.data.canDownloadBill
-        this.state.canDownloadAAI = response.data.canDownloadAAI
-        this.state.billKey = response.data.billKey
-        this.state.AAIkey = response.data.AAIkey
-        this.state.acceptedEnrollment = response.data.acceptedEnrollment
+        context.commit('retrieveInfo', response)
       }) 
       .catch(error => console.log(error))
     }*/
