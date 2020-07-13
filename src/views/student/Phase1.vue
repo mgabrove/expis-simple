@@ -36,13 +36,13 @@
                 <tr>
                     <td class="table_title">Adresa</td>
                     <td class="table_content">{{$store.state.streetAddress}}</td>
-                    <td v-if="$store.state.courses === null"></td>
-                    <td v-if="$store.state.courses !== null" class="table_title">
+                    <td v-if="$store.state.courses === undefined"></td>
+                    <td v-if="$store.state.courses !== undefined" class="table_title">
                         Moduli
                         <button v-if="$store.state.courses != undefined" class="btn btn-primary shadow-none" style="background-color:#232323; border-color:#232323;" @click="showFET">IZMIJENI</button>
                     </td>
-                    <td v-if="$store.state.courses === null" class="table_content">/</td>
-                    <td v-if="$store.state.courses !== null" class="table_content">
+                    <td v-if="$store.state.courses === undefined" class="table_content">/</td>
+                    <td v-if="$store.state.courses !== undefined" class="table_content">
                         <ol>
                             <li v-for="(smjer, broj) in $store.state.courses" v-bind:key="broj">
                                 {{broj+1}}. {{smjer}}
