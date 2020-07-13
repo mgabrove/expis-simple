@@ -40,6 +40,10 @@ export default {
             this.$emit('close');
         },
         move(from, to) {
+          this.$store.dispatch('move', {
+            from: from,
+            to: to
+          })
             var temp_from = this.$store.state.courses[from]
             var temp_to = this.$store.state.courses[to]
             this.$store.state.courses.splice(from, 1, temp_to)

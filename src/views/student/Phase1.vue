@@ -185,7 +185,6 @@ export default {
             this.isConfirmVisible = false
         },
         prihvati() {
-            this.$store.dispatch('hasAcceptedEnrollment')
             this.$store.dispatch('acceptEnrollment')
         },
     },

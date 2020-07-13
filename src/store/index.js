@@ -43,10 +43,16 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    move(state, data) {
+      var temp_from = state.courses[data.from]
+      var temp_to = state.courses[data.to]
+      state.courses.splice(data.from, 1, temp_to)
+      state.courses.splice(data.to, 1, temp_from)
+    },
     setCanDownloadAAI(state) {
       state.canDownloadAAI = true
     },
-    hasAcceptedEnrollment(state) {
+    acceptEnrollment(state) {
       state.acceptedEnrollment = true
       state.canDownloadBill = true
     },
@@ -87,6 +93,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    move(context, data) {
+      context.commit('move', data)
+    },
     retrieveToken(context, credentials) {
       return new Promise((resolve, reject) => {
         axios.post('/login', {
@@ -109,13 +118,23 @@ export default new Vuex.Store({
         })
       })
     },
-
     destroyToken(context) {
       if(context.getters.loggedIn) {
         localStorage.removeItem('access_token')
         localStorage.removeItem('access_username')
         context.commit('destroyToken')
       }
+    },
+    acceptEnrollment(context, data){
+      axios.defaults.headers.common['Authorization'] = 'basic ' + context.state.token
+      axios.get('/info/'+context.state.username, {
+        acceptedEnrollment: true,
+        modulePreferences: data.list
+      })
+      .then(() => {
+        context.commit('acceptEnrollment')
+      }) 
+      .catch(error => console.log(error))
     },
 
     /* destroyToken(context) {
