@@ -111,11 +111,17 @@ export default new Vuex.Store({
     },
 
     destroyToken(context) {
-      if(context.getters.loggedin) {
-        localStorage.removeItem('access_token')
-        localStorage.removeItem('access_username')
-        context.commit('destroyToken')
-      }
+      return new Promise((resolve, reject) => {
+        if(context.getters.loggedin) {
+          localStorage.removeItem('access_token')
+          localStorage.removeItem('access_username')
+          context.commit('destroyToken')
+          resolve()
+        }
+        else {
+          reject()
+        }
+      })
     },
 
     /* destroyToken(context) {
