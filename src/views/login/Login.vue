@@ -63,6 +63,7 @@ export default {
             }
         },
         enterClicked () {
+            this.submitted = true
             this.login()
         }
     }

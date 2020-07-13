@@ -14,7 +14,7 @@ Vue.use(VueRouter)
       component: HomePage,
       meta: {
         requiresAuth: true,
-        title: "Upisi na UniPu - "+store.state.name+" "+store.state.surname
+        title: "Upisi na UniPu - "+store.getters.name+" "+store.getters.surname
       }
     },
     {

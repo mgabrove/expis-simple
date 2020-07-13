@@ -38,6 +38,12 @@ export default new Vuex.Store({
     render: false
   },
   getters: {
+    name(state) {
+      return state.name
+    },
+    surname(state) {
+      return state.surname
+    },
     loggedIn(state) {
       return state.token != null
     },
@@ -110,7 +116,7 @@ export default new Vuex.Store({
           resolve(response)
         })
         .catch(error => {
-          context.state.feedback = error
+          context.state.feedback = "OIB ili lozinka nisu ispravni"
           reject(error)
         })
       })
