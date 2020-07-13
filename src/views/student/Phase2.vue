@@ -12,6 +12,9 @@
 import InfoBill from '@/views/student/InfoBill'
 export default {
     name: 'phase2',
+    components: {
+        InfoBill
+    },
     data() {
         return {
             isInfoBillVisible: false
