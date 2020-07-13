@@ -25,13 +25,15 @@
                     <td class="table_title">Poštanski broj</td>
                     <td class="table_content">{{$store.state.postalNumber}}</td>
                     <td class="table_title">Prvi studij</td>
-                    <td class="table_content">{{$store.state.notStudiedBefore}}</td>
+                    <td v-if="$store.state.notStudiedBefore === true" class="table_content">DA</td>
+                    <td v-if="$store.state.notStudiedBefore === false" class="table_content">NE</td>
                 </tr>
                 <tr>
                     <td class="table_title">Mjesto</td>
                     <td class="table_content">{{$store.state.postalTown}}</td>
                     <td class="table_title">Vrsta studiranja</td>
-                    <td class="table_content">{{$store.state.fullTimeStudent}}</td>
+                    <td v-if="$store.state.fullTimeStudent === true" class="table_content">Redovno</td>
+                    <td v-if="$store.state.fullTimeStudent === false" class="table_content">Izvanredno</td>
                 </tr>
                 <tr>
                     <td class="table_title">Adresa</td>
