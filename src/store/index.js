@@ -13,6 +13,7 @@ export default new Vuex.Store({
     token: localStorage.getItem('access_token') || null,
     username: localStorage.getItem('access_username') || null,
     feedback: null,
+    title: null,
 
     name: null,
     surname: null,
@@ -85,6 +86,7 @@ export default new Vuex.Store({
       state.AAIkey = doc.data.AAIkey
       state.acceptedEnrollment = doc.data.acceptedEnrollment
       state.render = true
+      state.title = "Upisi na UniPu - "+state.name+" "+state.surname
     },
     retrieveToken(state, data) {
       state.token = data.token
