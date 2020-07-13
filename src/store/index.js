@@ -40,16 +40,17 @@ export default new Vuex.Store({
   getters: {
     loggedIn(state) {
       return state.token != null
+    },
+    moduleList(state) {
+      return state.courses
     }
   },
   mutations: {
     move(state, data) {
       var temp_from = state.courses[data.from]
       var temp_to = state.courses[data.to]
-      console.log(state.courses)
       state.courses.splice(data.from, 1, temp_to)
       state.courses.splice(data.to, 1, temp_from)
-      console.log(state.courses)
     },
     setCanDownloadAAI(state) {
       state.canDownloadAAI = true

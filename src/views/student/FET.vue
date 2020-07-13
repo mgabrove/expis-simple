@@ -9,7 +9,7 @@
         <section class="modal-body" id="modalDescription">
           <slot name="body">
             <ul class="list-group">
-                <li v-for="(smjer, broj) in $store.state.courses" v-bind:key="broj" class="list-group-item">
+                <li v-for="(smjer, broj) in $store.getters.moduleList" v-bind:key="broj" class="list-group-item">
                     <span>{{smjer}}</span>
                     <div class="btn-group button-caret-group">  
                         <button class="btn button-caret-up shadow-none" v-on:click="move(broj,broj-1)" :disabled="broj==0">
