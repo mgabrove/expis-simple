@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import firebase from 'firebase'
+//import firebase from 'firebase'
 
 export default {
     data () {
@@ -28,7 +28,7 @@ export default {
         }
     },
     methods: {
-        login () {
+        /* login () {
             this.$store.state.username = this.username
             if (this.username && this.password) {
                 this.$store.state.feedback = null
@@ -43,38 +43,18 @@ export default {
             } else {
                 this.$store.state.feedback = 'Please fill out both fields'
             }
-        },
-        /* login() {
+        }, */
+        login() {
             this.$store.dispatch('retrieveToken', {
                 username: this.username,
                 password: this.password
             })
-            .then(response => {
+            .then(() => {
                 this.$router.push({
                     name: 'HomePage'
                 })
             })
-
-
-
-            this.$store.state.feedback = null
-            this.$store.state.username = this.username
-            if (this.username && this.password) {
-                this.$store.dispatch('login', {
-                    username: this.username,
-                    password: this.password
-                })
-                .then(response => {
-                    this.$router.push({
-                        name: 'HomePage'
-                    })
-                }).catch(err => {
-                    this.$store.state.feedback = err.message
-                })
-            } else {
-                this.$store.state.feedback = 'Please fill out both fields'
-            }
-        } */
+        },
         enterClicked () {
             this.login()
         }

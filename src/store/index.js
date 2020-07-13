@@ -3,8 +3,8 @@ import Vuex from 'vuex'
 import axios from 'axios'
 axios.defaults.baseURL = 'http://ira.unipu.hr/expis'
 
-import firebase from 'firebase'
-import db from '@/firebase/firebaseInit'
+//import firebase from 'firebase'
+//import db from '@/firebase/firebaseInit'
 
 Vue.use(Vuex)
 
@@ -86,7 +86,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    /* retrieveToken(context, credentials) {
+    retrieveToken(context, credentials) {
       return new Promise((resolve, reject) => {
         axios.post('/login', {
           oib: credentials.username,
@@ -104,8 +104,8 @@ export default new Vuex.Store({
           console.log(error)
           reject(error)
         })
-      }
-    }, */
+      })
+    },
 
     /* destroyToken(context) {
       if(context.getters.loggedin) {
@@ -122,7 +122,7 @@ export default new Vuex.Store({
           console.log(error)
           reject(error)
         })
-      }
+      })
       }
     }, */
 
@@ -135,7 +135,7 @@ export default new Vuex.Store({
     engageRefreshScenarioDummy(context) {
       context.commit('engageRefreshScenarioDummy')
     },
-    retrieveInfo(context){
+    /* retrieveInfo(context){
       var user = firebase.auth().currentUser
       db.collection("users").where("uID","==",user.uid)
       .onSnapshot(snapshot => {
@@ -143,8 +143,8 @@ export default new Vuex.Store({
             context.commit('retrieveInfo', doc)
           })
       })
-    },
-    acceptEnrollment(){
+    }, */
+    /* acceptEnrollment(){
       var user = firebase.auth().currentUser
       db.collection("users").where("uID","==",user.uid)
       .onSnapshot(snapshot => {
@@ -180,7 +180,7 @@ export default new Vuex.Store({
               })
           })
       })
-    },
+    }, */
 
     /*login(credentials){
       axios.post('/login', {
@@ -196,14 +196,14 @@ export default new Vuex.Store({
       })
     }*/
 
-    /*retrieveInfo(){
+    retrieveInfo(context){
       axios.defaults.headers.common['Authorization'] = 'basic ' + context.state.token
       axios.get('/info/'+context.state.oib)
       .then(response => {
         context.commit('retrieveInfo', response)
       }) 
       .catch(error => console.log(error))
-    }*/
+    }
 
   },
   modules: {
