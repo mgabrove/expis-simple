@@ -13,8 +13,7 @@ Vue.use(VueRouter)
       name: 'HomePage',
       component: HomePage,
       meta: {
-        requiresAuth: true,
-        title: "Upisi na UniPu"
+        requiresAuth: true
       }
     },
     {
@@ -22,8 +21,7 @@ Vue.use(VueRouter)
       name: 'Login',
       component: Login,
       meta: {
-        requiresVisitor: true,
-        title: "Upisi na UniPu"
+        requiresVisitor: true
       }
     }
 ]
@@ -35,7 +33,6 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = to.meta.title
   if (to.matched.some(record => record.meta.requiresAuth)) {
     if (!store.getters.loggedIn) {
       next({ name: 'Login' })

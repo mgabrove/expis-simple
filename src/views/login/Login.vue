@@ -1,8 +1,8 @@
 <template>
     <div class="top150">
         <vue-headful
-            title="Title from vue-headful1"
-            description="Description from vue-headful1"
+            title="Upisi na UniPu"
+            description="Upisi na UniPu"
         />
         <h2>Login</h2>
             <div class="form-group offset-lg-4 col-lg-4 col-10 offset-1">
