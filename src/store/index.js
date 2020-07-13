@@ -83,6 +83,7 @@ export default new Vuex.Store({
     },
     destroyToken(state) {
       state.token = null
+      state.username = null
     }
   },
   actions: {
@@ -109,23 +110,31 @@ export default new Vuex.Store({
       })
     },
 
+    destroyToken(context) {
+      if(context.getters.loggedin) {
+        localStorage.removeItem('access_token')
+        localStorage.removeItem('access_username')
+        context.commit('destroyToken')
+      }
+    },
+
     /* destroyToken(context) {
       if(context.getters.loggedin) {
         return new Promise((resolve, reject) => {
-        axios.post('/logout')
-        .then(response => {
-          localStorage.removeItem('access_token')
-          context.commit('destroyToken')
-          resolve(response)
+          axios.post('/logout')
+          .then(response => {
+            localStorage.removeItem('access_token')
+            context.commit('destroyToken')
+            resolve(response)
+          })
+          .catch(error => {
+            localStorage.removeItem('access_token')
+            localStorage.removeItem('access_username', token)
+            context.commit('destroyToken')
+            console.log(error)
+            reject(error)
+          })
         })
-        .catch(error => {
-          localStorage.removeItem('access_token')
-          localStorage.removeItem('access_username', token)
-          context.commit('destroyToken')
-          console.log(error)
-          reject(error)
-        })
-      })
       }
     }, */
 
