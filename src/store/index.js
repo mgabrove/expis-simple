@@ -125,11 +125,11 @@ export default new Vuex.Store({
         context.commit('destroyToken')
       }
     },
-    acceptEnrollment(context, data){
+    acceptEnrollment(context){
       axios.defaults.headers.common['Authorization'] = 'basic ' + context.state.token
       axios.get('/info/'+context.state.username, {
         acceptedEnrollment: true,
-        modulePreferences: data.list
+        modulePreferences: context.state.courses
       })
       .then(() => {
         context.commit('acceptEnrollment')
