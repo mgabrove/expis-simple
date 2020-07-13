@@ -56,25 +56,25 @@ export default new Vuex.Store({
       state.acceptedEnrollment = false
     },
     retrieveInfo(state, doc) {
-      state.name = doc.data().name
-      state.surname = doc.data().surname
-      state.oib = doc.data().oib
-      state.course = doc.data().course
-      state.courseForm = doc.data().courseForm
-      state.dateOfBirth = doc.data().dateOfBirth
-      state.postalTown = doc.data().postalTown
-      state.postalNumber = doc.data().postalCode
-      state.streetAddress = doc.data().streetAddress
-      state.telephone = doc.data().telephone
-      state.citizenship = doc.data().citizenship
-      state.placement = doc.data().placement
-      state.upisniBroj = doc.data().upisniBroj
-      state.courses = doc.data().modulePreferences
-      state.canDownloadBill = doc.data().canDownloadBill
-      state.canDownloadAAI = doc.data().canDownloadAAI
-      state.billKey = doc.data().billKey
-      state.AAIkey = doc.data().AAIkey
-      state.acceptedEnrollment = doc.data().acceptedEnrollment
+      console.log(doc)
+      state.name = doc.data.name
+      state.surname = doc.data.surname
+      state.oib = doc.data.oib
+      state.course = doc.data.course
+      state.courseForm = doc.data.courseForm
+      state.dateOfBirth = doc.data.dateOfBirth
+      state.postalTown = doc.data.postalTown
+      state.postalNumber = doc.data.postalCode
+      state.streetAddress = doc.data.streetAddress
+      state.telephone = doc.data.telephone
+      state.placement = doc.data.placement
+      state.upisniBroj = doc.data.upisniBroj
+      state.courses = doc.data.modulePreferences
+      state.canDownloadBill = doc.data.canDownloadBill
+      state.canDownloadAAI = doc.data.canDownloadAAI
+      state.billKey = doc.data.billKey
+      state.AAIkey = doc.data.AAIkey
+      state.acceptedEnrollment = doc.data.acceptedEnrollment
       state.render = true
     },
     retrieveToken(state, data) {
