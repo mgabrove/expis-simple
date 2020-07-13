@@ -214,7 +214,7 @@ export default new Vuex.Store({
         this.$store.state.feedback = error.message
       })
     }*/
-    acceptEnrollment({ dispatch,context }){
+    acceptEnrollment(context){
       if(context.state.courses != null) {
         axios.defaults.headers.common['Authorization'] = 'basic ' + context.state.token
         axios.patch('/info/'+context.state.username, {
@@ -235,7 +235,7 @@ export default new Vuex.Store({
         }) 
         .catch(error => console.log(error))        
       }
-      dispatch('retrieveInfo')
+      context.dispatch('retrieveInfo')
     },
 
     retrieveInfo(context){
