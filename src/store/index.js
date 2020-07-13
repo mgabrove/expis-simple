@@ -11,8 +11,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     token: localStorage.getItem('access_token') || null,
-    user: null,
-    username: null,
+    username: localStorage.getItem('access_username') || null,
     feedback: null,
 
     name: null,
@@ -78,8 +77,9 @@ export default new Vuex.Store({
       state.acceptedEnrollment = doc.data().acceptedEnrollment
       state.render = true
     },
-    retrieveToken(state, token) {
-      state.token = token 
+    retrieveToken(state, data) {
+      state.token = data.token
+      state.username = data.username 
     },
     destroyToken(state) {
       state.token = null
@@ -95,7 +95,11 @@ export default new Vuex.Store({
         .then(response => {
           const token = response.data
           localStorage.setItem('access_token', token)
-          context.commit('retrieveToken', token)
+          localStorage.setItem('access_username', token)
+          context.commit('retrieveToken', {
+            token: token,
+            username: credentials.username
+          })
           resolve(response)
         })
         .catch(error => {
@@ -116,6 +120,7 @@ export default new Vuex.Store({
         })
         .catch(error => {
           localStorage.removeItem('access_token')
+          localStorage.removeItem('access_username', token)
           context.commit('destroyToken')
           console.log(error)
           reject(error)
