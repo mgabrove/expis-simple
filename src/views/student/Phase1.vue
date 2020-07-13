@@ -59,6 +59,10 @@
             <table class="table table-striped offset-1 col-10" style="margin-bottom:0;">
                 <tbody>
                     <tr>
+                        <td class="table_title">OIB</td>
+                        <td class="table_content">{{$store.state.oib}}</td>
+                    </tr>
+                    <tr>
                         <td class="table_title">Ime</td>
                         <td class="table_content">{{$store.state.name}}</td>
                     </tr>
@@ -67,61 +71,51 @@
                         <td class="table_content">{{$store.state.surname}}</td>
                     </tr>
                     <tr>
-                        <td class="table_title">OIB</td>
-                        <td class="table_content">{{$store.state.oib}}</td>
-                    </tr>
-                    <tr>
-                        <td class="table_title">Datum rođenja</td>
-                        <td class="table_content">{{$store.state.dateOfBirth}}</td>
+                        <td class="table_title">Poštanski broj</td>
+                        <td class="table_content">{{$store.state.postalNumber}}</td>
                     </tr>
                     <tr>
                         <td class="table_title">Mjesto</td>
                         <td class="table_content">{{$store.state.postalTown}}</td>
                     </tr>
                     <tr>
-                        <td class="table_title">Poštanski broj</td>
-                        <td class="table_content">{{$store.state.postalNumber}}</td>
-                    </tr>
-                    <tr>
-                        <td class="table_title">Ulica</td>
+                        <td class="table_title">Adresa</td>
                         <td class="table_content">{{$store.state.streetAddress}}</td>
-                    </tr>                                 
+                    </tr>                                
                 </tbody>
             </table>
             <table class="table table-striped offset-1 col-10">
                 <tbody>
-                    <tr></tr>
-                    <tr>
-                        <td class="table_title">Državljanstvo</td>
-                        <td class="table_content">{{$store.state.citizenship}}</td>
-                    </tr>
                     <tr>
                         <td class="table_title">Telefon</td>
                         <td class="table_content">{{$store.state.telephone}}</td>
                     </tr>
                     <tr>
-                        <td class="table_title">Plasman za upis</td>
-                        <td class="table_content">{{$store.state.placement}}</td>
+                        <td class="table_title">Fakultet</td>
+                        <td class="table_content">{{$store.state.faculty}}</td>
                     </tr>
                     <tr>
-                        <td class="table_title">ID za upis</td>
-                        <td class="table_content">{{$store.state.upisniBroj}}</td>
-                    </tr>
-                    <tr>
-                        <td class="table_title">Odabran studij</td>
+                        <td class="table_title">Studij</td>
                         <td class="table_content">{{$store.state.course}}</td>
                     </tr>
                     <tr>
-                        <td class="table_title">Vrsta studija</td>
-                        <td class="table_content">{{$store.state.courseForm}}</td>
+                        <td class="table_title">Prvi studij</td>
+                        <td v-if="$store.state.notStudiedBefore === true" class="table_content">DA</td>
+                        <td v-if="$store.state.notStudiedBefore === false" class="table_content">NE</td>
                     </tr>
                     <tr>
-                        <td class="table_title">
-                            Smjer
-                            <button v-if="$store.state.canDownloadBill === false" class="btn btn-primary shadow-none" style="background-color:#232323; border-color:#232323;" @click="showFET">Izmjeni</button>
+                        <td class="table_title">Vrsta studiranja</td>
+                        <td v-if="$store.state.fullTimeStudent === true" class="table_content">Redovno</td>
+                        <td v-if="$store.state.fullTimeStudent === false" class="table_content">Izvanredno</td>
+                    </tr>
+                    <tr>
+                        <td v-if="$store.state.courses === undefined"></td>
+                        <td v-if="$store.state.courses !== undefined" class="table_title">
+                            Moduli
+                            <button v-if="$store.state.courses != undefined" class="btn btn-primary shadow-none" style="background-color:#232323; border-color:#232323;" @click="showFET">IZMIJENI</button>
                         </td>
-                        <td v-if="$store.state.courses === null" class="table_content">/</td>
-                        <td v-if="$store.state.courses !== null" class="table_content">
+                        <td v-if="$store.state.courses === undefined" class="table_content"></td>
+                        <td v-if="$store.state.courses !== undefined" class="table_content">
                             <ol>
                                 <li v-for="(smjer, broj) in $store.state.courses" v-bind:key="broj">
                                     {{broj+1}}. {{smjer}}
