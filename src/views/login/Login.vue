@@ -50,8 +50,11 @@ export default {
                 password: this.password
             })
             .then(() => {
-                this.$router.push({
+                await this.$router.push({
                     name: 'HomePage'
+                })
+                .catch(err => {
+                    console.log(err)
                 })
             })
         },

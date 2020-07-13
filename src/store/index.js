@@ -93,9 +93,7 @@ export default new Vuex.Store({
           password: credentials.password
         })
         .then(response => {
-          console.log(response)
           const token = response.data
-          console.log(token)
           localStorage.setItem('access_token', token)
           context.commit('retrieveToken', token)
           resolve(response)
