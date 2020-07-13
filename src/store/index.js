@@ -127,7 +127,7 @@ export default new Vuex.Store({
     },
     acceptEnrollment(context){
       axios.defaults.headers.common['Authorization'] = 'basic ' + context.state.token
-      axios.get('/info/'+context.state.username, {
+      axios.patch('/info/'+context.state.username, {
         acceptedEnrollment: true,
         modulePreferences: context.state.courses
       })
