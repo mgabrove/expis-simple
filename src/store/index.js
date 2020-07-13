@@ -62,7 +62,7 @@ export default new Vuex.Store({
       state.acceptedEnrollment = false
     },
     retrieveInfo(state, doc) {
-      console.log(doc)
+      console.log(canDownloadBill)
       state.name = doc.data.name
       state.surname = doc.data.surname
       state.oib = doc.data.oib
@@ -82,6 +82,7 @@ export default new Vuex.Store({
       state.AAIkey = doc.data.AAIkey
       state.acceptedEnrollment = doc.data.acceptedEnrollment
       state.render = true
+      console.log(canDownloadBill)
     },
     retrieveToken(state, data) {
       state.token = data.token
