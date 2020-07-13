@@ -1,5 +1,9 @@
 <template>
     <div v-if="$store.state.render" class="margin-top-120">
+        <vue-headful
+            title="Title from vue-headful"
+            description="Description from vue-headful"
+        />
         <Student v-if="$store.state.oib != null"/>
         <Referada v-if="$store.state.oib === null"/>
     </div>

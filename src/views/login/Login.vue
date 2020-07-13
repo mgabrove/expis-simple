@@ -1,5 +1,9 @@
 <template>
     <div class="top150">
+        <vue-headful
+            title="Title from vue-headful1"
+            description="Description from vue-headful1"
+        />
         <h2>Login</h2>
             <div class="form-group offset-lg-4 col-lg-4 col-10 offset-1">
                 <input @keyup.enter="enterClicked()" type="text" aria-describedby="emailHelp" v-model="username" placeholder="OIB" name="username" class="form-control" :class="{ 'is-invalid': submitted && !username }" />
