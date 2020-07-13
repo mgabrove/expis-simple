@@ -61,6 +61,7 @@ export default new Vuex.Store({
       state.acceptedEnrollment = false
     },
     retrieveInfo(state, doc) {
+      console.log(doc)
       state.name = doc.data.name
       state.surname = doc.data.surname
       state.oib = doc.data.oib
