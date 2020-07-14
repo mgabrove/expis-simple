@@ -8,7 +8,34 @@
         </header>
         <section class="modal-body" id="modalDescription">
           <slot name="body">
-            Tu nešto...
+            <table style="border-collapse:collapse; border-style:hidden;">
+              <tbody>
+                <tr>
+                  <td style="border: 1px solid lightgray;" class="table_title">Primatelj</td>
+                  <td style="border: 1px solid lightgray;" class="table_content">SVEUČILIŠTE JURJA DOBRILE U PULI</td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid lightgray;" class="table_title">Adresa</td>
+                  <td style="border: 1px solid lightgray;" class="table_content">ZAGREBAČKA 30, HR-52100 PULA</td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid lightgray;" class="table_title">IBAN</td>
+                  <td style="border: 1px solid lightgray;" class="table_content">HR1923600001101931377</td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid lightgray;" class="table_title">Model</td>
+                  <td style="border: 1px solid lightgray;" class="table_content">HR99</td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid lightgray;" class="table_title">Poziv na broj (vaš OIB)</td>
+                  <td style="border: 1px solid lightgray;" class="table_content">{{$store.state.oib}}</td>
+                </tr>
+                <tr>
+                  <td style="border: 1px solid lightgray;" class="table_title">Iznos</td>
+                  <td style="border: 1px solid lightgray;" class="table_content">300,00kn (dummy)</td>
+                </tr>
+              </tbody>
+            </table>
           </slot>
         </section>
         <footer class="modal-footer">
