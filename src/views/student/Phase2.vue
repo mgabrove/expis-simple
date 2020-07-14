@@ -1,7 +1,8 @@
 <template>
     <div>
         <div>
-            <a :href="$store.state.billKey" target="_blank" class="floating-left"><img :src="$store.getters.billUrl"></a>
+            <p>Uplata upisnine</p>
+            <a :href="$store.getters.billUrl" target="_blank" class="floating-left"><img :src="$store.getters.billUrl" style="width:100%;"></a>
             <button class="btn btn-primary shadow-none floating-left" style="background-color:#232323; border-color:#232323;" @click="showInfoBill">Račun</button>
         </div>
         <InfoBill v-if="isInfoBillVisible === true" @close="closeInfoBill"/>

@@ -3,7 +3,7 @@
       <div class="modal1 col-lg-4 col-10 offset-1 offset-lg-0" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDescription">
         <header class="modal-header" id="modalTitle">
           <slot name="header">
-            Podaci o studentu
+            Informacije o plačanju
           </slot>
         </header>
         <section class="modal-body" id="modalDescription">

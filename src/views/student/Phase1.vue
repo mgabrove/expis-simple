@@ -122,8 +122,8 @@
             </table>
         </div>        
         <div v-if="$store.state.acceptedEnrollment != true">
-            <button class="btn btn-primary shadow-none" style="background-color:#232323; border-color:#232323;" @click="showConfirm">Prihvati</button>
-            <button class="btn btn-primary shadow-none" style="background-color:#232323; border-color:#232323; margin-left:10px;" @click="showDecline">Odbij</button>
+            <button class="btn btn-primary shadow-none" style="background-color:#232323; border-color:#232323; color:lime;" @click="showConfirm">Prihvati</button>
+            <button class="btn btn-primary shadow-none" style="background-color:#232323; border-color:#232323; margin-left:10px; color:red;" @click="showDecline">Odbij</button>
         </div>
         <Confirm v-if="isConfirmVisible === true" :isAccept="isConfirmAccept" @close="closeConfirm"/>
     </div>
