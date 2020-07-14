@@ -41,9 +41,9 @@ export default {
             float:left;
         }
     }
-    @media (min-width: 599px) {
+    @media (max-width: 600px) {
         .barcode_bill {
-            width: 30%;
+            width: 100%;
         }
     }
 </style>
