@@ -10,6 +10,9 @@
             <p>...</p>
             <p>Vaš izbor je trajan!!!</p>
             <p>...</p>
+            <p>Unesite vaš OIB za potvrdu izbora.</p>
+            <input @keyup.enter="enterClicked()" type="text" aria-describedby="emailHelp" v-model="oib" placeholder="OIB" name="username" class="form-control"/>
+            <div v-show="doShow" class="invalid-feedback">Unos i OIB se ne podudaraju</div>
           </slot>
         </section>
         <footer class="modal-footer">
@@ -30,8 +33,10 @@
 export default {
   props: ['isAccept'],
   name: 'modal',
-    data(){
+  data(){
     return{
+      oib: null,
+      doShow: false
     }
   },
   methods: {
@@ -39,11 +44,15 @@ export default {
       this.$emit('close', broj)
     },
     approve() {
-      if(this.isAccept === true) {
-        this.close(1)
-      }
-      else {
-        this.close(-1)
+      if(this.oib === this.$store.state.oib) {
+        if(this.isAccept === true) {
+          this.close(1)
+        }
+        else {
+          this.close(-1)
+        }
+      } else {
+        this.doShow = true
       }
     },
     decline() {
