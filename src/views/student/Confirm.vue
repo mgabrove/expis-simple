@@ -1,7 +1,7 @@
 <template>
     <div class="modal-backdrop1" style="z-index:1;">
       <div class="modal1 col-md-4 col-10" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDescription">
-        <section class="modal-body" id="modalDescription">
+        <section class="modal-body" id="modalDescription" style="overflow-y:auto;">
           <slot name="body">
             <p>Jeste li sigurni? ...</p>
             <p>...</p>
@@ -11,8 +11,8 @@
             <p>Vaš izbor je trajan!!!</p>
             <p>...</p>
             <p>Unesite vaš OIB za potvrdu izbora.</p>
-            <input @keyup.enter="enterClicked()" type="text" aria-describedby="emailHelp" v-model="oib" placeholder="OIB" name="username" class="form-control"/>
-            <div v-show="doShow" class="invalid-feedback">Unos i OIB se ne podudaraju</div>
+            <input @keyup.enter="enterClicked()" type="text" aria-describedby="emailHelp" v-model="oib" placeholder="OIB" name="username" class="form-control col-8 offset-2"/>
+            <div v-if="doShow" class="invalid-feedback">Unos i OIB se ne podudaraju!</div>
           </slot>
         </section>
         <footer class="modal-footer">

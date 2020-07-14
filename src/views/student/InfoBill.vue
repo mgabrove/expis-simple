@@ -6,7 +6,7 @@
             Podaci za uplatu
           </slot>
         </header>
-        <section class="modal-body" id="modalDescription">
+        <section class="modal-body" id="modalDescription" style="overflow-y:auto;">
           <slot name="body">
             <table style="border-collapse:collapse; border-style:hidden;">
               <tbody>
@@ -37,6 +37,7 @@
               </tbody>
             </table>
           </slot>
+          <div><a :href="$store.getters.billUrl" target="_blank"><img :src="$store.getters.billUrl" class="barcode_bill"></a></div>
         </section>
         <footer class="modal-footer">
           <slot name="footer">
