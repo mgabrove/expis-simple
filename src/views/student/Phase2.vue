@@ -2,7 +2,7 @@
     <div>
         <div>
             <h3>Uplata upisnine</h3>
-            <a :href="$store.getters.billUrl" target="_blank"><img :src="$store.getters.billUrl" style="width:100%;"></a>
+            <div><a :href="$store.getters.billUrl" target="_blank"><img :src="$store.getters.billUrl" class="barcode_bill"></a></div>
             <button class="btn btn-primary shadow-none" style="background-color:#232323; border-color:#232323;" @click="showInfoBill">Račun</button>
         </div>
         <InfoBill v-if="isInfoBillVisible === true" @close="closeInfoBill"/>
@@ -33,9 +33,17 @@ export default {
 </script>
 
 <style scoped>
+    .barcode_bill {
+        width: 30%;
+    }
     @media (min-width: 992px) {
         .floating-left {
             float:left;
+        }
+    }
+    @media (min-width: 599px) {
+        .barcode_bill {
+            width: 30%;
         }
     }
 </style>
