@@ -2,7 +2,7 @@
   <div class="home top10">
     <Phase1/>
     <div class="container">
-      <div v-if="$store.state.canDownloadBill === true || $store.state.canDownloadAAI === true" class="row col-10 offset-1" style="display:flex; border:1px solid lightgray;">
+      <div v-if="$store.state.canDownloadBill === true || $store.state.canDownloadAAI === true" class="row col-10 offset-1 col-lg-6 offset-lg-3" style="display:flex; border:1px solid lightgray; padding:10px;">
         <Phase2 v-if="$store.state.canDownloadBill === true" class="col-12"/>
         <Phase3 v-if="$store.state.canDownloadAAI === true" class="col-12"/>
       </div>
