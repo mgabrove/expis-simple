@@ -37,7 +37,7 @@
               </tbody>
             </table>
           </slot>
-          <div><a :href="$store.getters.billUrl" target="_blank"><img :src="$store.getters.billUrl" class="barcode_bill"></a></div>
+          <div><a :href="$store.getters.billUrl" target="_blank"><img :src="$store.getters.billUrl" style="width:100%;"></a></div>
         </section>
         <footer class="modal-footer">
           <slot name="footer">
