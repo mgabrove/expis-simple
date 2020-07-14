@@ -20,7 +20,7 @@
                 </tr>
                 <tr>
                   <td style="border: 1px solid lightgray;" class="table_title">IBAN</td>
-                  <td style="border: 1px solid lightgray;" class="table_content">HR1923600001101931377</td>
+                  <td style="border: 1px solid lightgray; overflow-wrap:break-word;" class="table_content">HR1923600001101931377</td>
                 </tr>
                 <tr>
                   <td style="border: 1px solid lightgray;" class="table_title">Model</td>
@@ -37,7 +37,7 @@
               </tbody>
             </table>
           </slot>
-          <div><a :href="$store.getters.billUrl" target="_blank"><img :src="$store.getters.billUrl" style="width:100%;"></a></div>
+          <div><a :href="$store.getters.billUrl" target="_blank"><img :src="$store.getters.billUrl" style="width:100%;"></a></div>  
         </section>
         <footer class="modal-footer">
           <slot name="footer">

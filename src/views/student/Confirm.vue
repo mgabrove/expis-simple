@@ -11,7 +11,7 @@
             <p>Vaš izbor je trajan!!!</p>
             <p>...</p>
             <p>Unesite vaš OIB za potvrdu izbora.</p>
-            <input @keyup.enter="enterClicked()" type="text" aria-describedby="emailHelp" v-model="oib" placeholder="OIB" name="username" class="form-control col-8 offset-2"/>
+            <input type="text" aria-describedby="emailHelp" v-model="oib" placeholder="OIB" name="username" class="form-control col-8 offset-2"/>
             <div v-if="doShow" class="invalid-feedback">Unos i OIB se ne podudaraju!</div>
           </slot>
         </section>
