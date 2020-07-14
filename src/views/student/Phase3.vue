@@ -1,6 +1,7 @@
 <template>
-    <div class="margin-top-10">
-        <a :href="$store.state.AAIkey" target="_blank" class="floating-right changing-margin-10"><button class="btn btn-primary shadow-none" style="background-color:#232323; border-color:#232323;">AAI podaci</button></a>
+    <div>
+        <h3>Skidanje AAI identiteta</h3>
+        <a :href="$store.state.AAIkey" target="_blank"><button class="btn btn-primary shadow-none" style="background-color:#232323; border-color:#232323;">AAI podaci</button></a>
     </div>
 </template>
 

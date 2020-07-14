@@ -2,9 +2,9 @@
   <div class="home top10">
     <Phase1/>
     <div class="container">
-      <div class="row margin-remove" style="display:flex; border:1px solid lightgray;">
-        <Phase2 v-if="$store.state.canDownloadBill === true" class="offset-md-1 col-md-5 col-12"/>
-        <Phase3 v-if="$store.state.canDownloadAAI === true" class="col-md-5 pull-right-md col-md-pull-1 col-12"/>
+      <div v-if="$store.state.canDownloadBill === true || $store.state.canDownloadAAI === true" class="row margin-remove" style="display:flex; border:1px solid lightgray;">
+        <Phase2 v-if="$store.state.canDownloadBill === true" class="col-12"/>
+        <Phase3 v-if="$store.state.canDownloadAAI === true" class="col-12"/>
       </div>
     </div>
   </div>
