@@ -20,7 +20,7 @@
                 </tr>
                 <tr>
                   <td style="border: 1px solid lightgray;" class="table_title">IBAN</td>
-                  <td style="border: 1px solid lightgray; overflow-wrap:break-word;" class="table_content">HR1923600001101931377</td>
+                  <td style="border: 1px solid lightgray; word-break:break-all;" class="table_content">HR1923600001101931377</td>
                 </tr>
                 <tr>
                   <td style="border: 1px solid lightgray;" class="table_title">Model</td>
