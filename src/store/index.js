@@ -1,17 +1,19 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+
 axios.defaults.baseURL = 'http://ira.unipu.hr/expis'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    //get token and username from localstorage
+    //used if page is refreshed or revisited without logging out
     token: localStorage.getItem('access_token') || null,
     username: localStorage.getItem('access_username') || null,
     feedback: null,
     title: null,
-
     name: null,
     surname: null,
     oib: null,
@@ -44,17 +46,20 @@ export default new Vuex.Store({
       return state.surname
     },
     loggedIn(state) {
+      //returns true if token exists
       return state.token != null
     },
     moduleList(state) {
       return state.courses
     },
     billUrl(state) {
+      //returns url to the barcode of the bill
       return ("http://ira.unipu.hr/files/codes/"+state.billKey+"/racun-"+state.oib+".png")
     }
   },
   mutations: {
     move(state, data) {
+      //swaps positions of 2 elements in an array
       var temp_from = state.courses[data.from]
       var temp_to = state.courses[data.to]
       state.courses.splice(data.from, 1, temp_to)
@@ -86,13 +91,14 @@ export default new Vuex.Store({
       state.AAIkey = doc.data.AAIkey
       state.acceptedEnrollment = doc.data.acceptedEnrollment
       state.render = true
-      state.title = "Upisi na UniPu - "+state.name+" "+state.surname
     },
     retrieveToken(state, data) {
+      //set credentials from store
       state.token = data.token
       state.username = data.username 
     },
     destroyToken(state) {
+      //remove credentials from store
       state.token = null
       state.username = null
     }
@@ -102,6 +108,7 @@ export default new Vuex.Store({
       context.commit('move', data)
     },
     retrieveToken(context, credentials) {
+      //login procedure
       return new Promise((resolve, reject) => {
         axios.post('/login', {
           oib: credentials.username,
@@ -109,8 +116,10 @@ export default new Vuex.Store({
         })
         .then(response => {
           const token = response.data
+          //put token into local storage
           localStorage.setItem('access_token', token)
           localStorage.setItem('access_username', credentials.username)
+          //put token into app storage
           context.commit('retrieveToken', {
             token: token,
             username: credentials.username
@@ -124,6 +133,7 @@ export default new Vuex.Store({
       })
     },
     destroyToken(context) {
+      //logout procedure that destroys all credentials
       if(context.getters.loggedIn) {
         localStorage.removeItem('access_token')
         localStorage.removeItem('access_username')
@@ -153,6 +163,7 @@ export default new Vuex.Store({
       context.commit('hasAcceptedEnrollment')
     },
     acceptEnrollment(context){
+      //approve enrollment of a student
       if(context.state.courses != null) {
         axios.defaults.headers.common['Authorization'] = 'basic ' + context.state.token
         axios.patch('/info/'+context.state.username, {

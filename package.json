@@ -1,6 +1,10 @@
 {
-  "name": "frontend",
-  "version": "0.1.0",
+  "name": "expis",
+  "description": "desc",
+  "repository": "https://github.com/mgabrove/expis-simple",
+  "author": "Marko Gabrovec <marko.gabrovec@gmail.com>",
+  "license": "MIT",
+  "version": "0.9.0",
   "private": true,
   "engines": {
     "node": "12.13.1"

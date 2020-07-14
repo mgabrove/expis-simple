@@ -1,4 +1,4 @@
-# frontend
+# expis - frontend
 
 ## Project setup
 ```

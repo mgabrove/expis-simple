@@ -13,9 +13,13 @@
           </slot>
         </section>
         <footer class="modal-footer">
-          <slot name="footer">
-            <button type="button" class="btn-close" @click="approve" aria-label="Close modal">DA</button>
-            <button type="button" class="btn-close" @click="decline" aria-label="Close modal">NE</button>
+          <slot v-if="isAccept" name="footer">
+            <button type="button" class="btn-close" @click="approve" aria-label="Close modal">PRIHVATI UPIS</button>
+            <button type="button" class="btn-close" @click="decline" aria-label="Close modal">POVRATAK</button>
+          </slot>
+          <slot v-if="!isAccept" name="footer">
+            <button type="button" class="btn-close" @click="approve" aria-label="Close modal">ODBIJ UPIS</button>
+            <button type="button" class="btn-close" @click="decline" aria-label="Close modal">POVRATAK</button>
           </slot>
         </footer>
       </div>

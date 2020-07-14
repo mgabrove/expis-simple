@@ -31,16 +31,21 @@ const router = new VueRouter({
   routes
 })
 
+// guard for proper router movement
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
+    //when heading to any with requiresAuth: true in meta
     if (!store.getters.loggedIn) {
+      //if not logged in login pushed
       next({ name: 'Login' })
     } else {
       next()
     }
   } 
   else if (to.matched.some(record => record.meta.requiresVisitor)) {
+    //when heading to any with requiresVisitor: true in meta
     if (store.getters.loggedIn) {
+      //if logged in homepage pushed
       next({ name: 'HomePage' })
     } else {
       next()

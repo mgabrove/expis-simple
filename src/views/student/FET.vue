@@ -3,10 +3,10 @@
       <div class="modal1 col-md-4 col-10" role="dialog" aria-labelledby="modalTitle" aria-describedby="modalDescription">
         <header class="modal-header" id="modalTitle">
           <slot name="header">
-            Izbor prioriteta smjerova
+            Izbor prioriteta modula
           </slot>
         </header>
-        <section class="modal-body" id="modalDescription">
+        <section class="modal-body" id="modalDescription" style="overflow-y:auto;">
           <slot name="body">
             <ul class="list-group">
                 <li v-for="(smjer, broj) in $store.state.courses" v-bind:key="broj" class="list-group-item">
@@ -25,7 +25,7 @@
         </section>
         <footer class="modal-footer">
           <slot name="footer">
-            <button type="button" class="btn-close" @click.prevent="close" aria-label="Close modal">Done</button>
+            <button type="button" class="btn-close" @click.prevent="close" aria-label="Close modal">Zatvori</button>
           </slot>
         </footer>
       </div>
