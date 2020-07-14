@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import store from '@/store'
 import HomePage from '../views/app/HomePage.vue'
 import Login from '../views/login/Login.vue'
-//import firebase from 'firebase'
 
 Vue.use(VueRouter)
 
@@ -50,17 +49,5 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
-/* router.beforeEach((to, from, next) => {
-  if (to.matched.some(rec => rec.meta.requiresAuth)) {
-    let user = firebase.auth().currentUser
-    if (user) {
-      next()
-    } else {
-      next({ name: 'Login' })
-    }
-  } else {
-    next()
-  }
-}) */
 
 export default router

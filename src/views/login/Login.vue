@@ -21,8 +21,6 @@
 </template>
 
 <script>
-//import firebase from 'firebase'
-
 export default {
     data () {
         return {
@@ -32,22 +30,6 @@ export default {
         }
     },
     methods: {
-        /* login () {
-            this.$store.state.username = this.username
-            if (this.username && this.password) {
-                this.$store.state.feedback = null
-                firebase.auth().signInWithEmailAndPassword(this.username, this.password)
-                .then(() => {
-                    this.$router.push({ 
-                        name: 'HomePage'
-                    })
-                }).catch(err => {
-                    this.$store.state.feedback = err.message
-                })
-            } else {
-                this.$store.state.feedback = 'Please fill out both fields'
-            }
-        }, */
         login() {
             if(this.username && this.password) {
                 this.$store.dispatch('retrieveToken', {

@@ -1,7 +1,7 @@
 <template>
     <div>
         <h2>Osobni podaci</h2>
-        <table class="table table-striped offset-1 col-10 hidden-xs">
+        <table class="table table-striped offset-1 col-10 hidden-xs" style="border: 1px solid lightgray;">
             <tbody>
                 <tr>
                     <td class="table_title">OIB</td>
@@ -56,7 +56,7 @@
             </tbody>
         </table>
         <div class="visible-xs">
-            <table class="table table-striped offset-1 col-10" style="margin-bottom:0;">
+            <table class="table table-striped offset-1 col-10" style="border: 1px solid lightgray;">
                 <tbody>
                     <tr>
                         <td class="table_title">OIB</td>
@@ -81,11 +81,7 @@
                     <tr>
                         <td class="table_title">Adresa</td>
                         <td class="table_content">{{$store.state.streetAddress}}</td>
-                    </tr>                                
-                </tbody>
-            </table>
-            <table class="table table-striped offset-1 col-10">
-                <tbody>
+                    </tr> 
                     <tr>
                         <td class="table_title">Telefon</td>
                         <td class="table_content">{{$store.state.telephone}}</td>
@@ -108,14 +104,12 @@
                         <td v-if="$store.state.fullTimeStudent === true" class="table_content">Redovno</td>
                         <td v-if="$store.state.fullTimeStudent === false" class="table_content">Izvanredno</td>
                     </tr>
-                    <tr>
-                        <td v-if="$store.state.courses === undefined"></td>
-                        <td v-if="$store.state.courses !== undefined" class="table_title">
+                    <tr v-if="$store.state.courses !== undefined">
+                        <td class="table_title">
                             Moduli
                             <button v-if="$store.state.courses != undefined" class="btn btn-primary shadow-none" style="background-color:#232323; border-color:#232323;" @click="showFET">IZMIJENI</button>
                         </td>
-                        <td v-if="$store.state.courses === undefined" class="table_content"></td>
-                        <td v-if="$store.state.courses !== undefined" class="table_content">
+                        <td class="table_content">
                             <ol>
                                 <li v-for="(smjer, broj) in $store.state.courses" v-bind:key="broj">
                                     {{broj+1}}. {{smjer}}
@@ -123,7 +117,7 @@
                             </ol>
                             <FET v-if="isFETVisible === true" :smjerovi="$store.state.courses" @close="closeFET"/>
                         </td>
-                    </tr>
+                    </tr>                               
                 </tbody>
             </table>
         </div>        

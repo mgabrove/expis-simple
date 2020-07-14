@@ -3,9 +3,6 @@ import Vuex from 'vuex'
 import axios from 'axios'
 axios.defaults.baseURL = 'http://ira.unipu.hr/expis'
 
-//import firebase from 'firebase'
-//import db from '@/firebase/firebaseInit'
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({

@@ -24,8 +24,6 @@
 </template>
 
 <script>
-import firebase from 'firebase'
-import db from '@/firebase/firebaseInit'
 
 import ApproveEntry from "@/views/referada/ApproveEntry"
 
@@ -40,7 +38,7 @@ export default {
             usersApp: [],
             usersNon: [],
             user: null,
-            userDoc: firebase.auth().currentUser,
+            //userDoc: firebase.auth().currentUser,
             filterDropdown: false,
             searchTerm: "",
             status: null,
@@ -48,7 +46,7 @@ export default {
         }
     },
 
-    methods: {
+    /* methods: {
         changing(broj){
             {  
                 var goup = 2;
@@ -98,7 +96,7 @@ export default {
     },
     mounted(){
         this.userDocListener()
-    }
+    } */
 
 }
 </script>
