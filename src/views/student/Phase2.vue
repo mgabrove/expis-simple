@@ -34,7 +34,7 @@ export default {
 
 <style scoped>
     .barcode_bill {
-        width: 30%;
+        width: 40%;
     }
     @media (min-width: 992px) {
         .floating-left {
