@@ -19,7 +19,7 @@
     "bootstrap": "^4.5.0",
     "core-js": "^3.6.5",
     "express": "4.17.3",
-    "jquery": "^3.5.1",
+    "jquery": "^3.7.1",
     "popper.js": "^1.16.1",
     "vue": "^2.6.11",
     "vue-headful": "^2.1.0",
